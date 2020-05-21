@@ -1,0 +1,40 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: spring-cloud-gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user-service/**
+          filters:
+            - StripPrefix=2
+        - id: file-service
+          uri: lb://file-service
+          predicates:
+            - Path=/api/file-service/**
+          filters:
+            - StripPrefix=2
+        - id: porter-website
+          uri: lb://porter-website
+          predicates:
+            - Path=/ui/**
+          filters:
+            - StripPrefix=0
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+    servicecomb:
+      discovery:
+        appName: porter-application
+        serviceName: ${spring.application.name}
+        enabled: true
+        address: http://127.0.0.1:30100
+        version: 0.0.1
+        healthCheckInterval: 30
