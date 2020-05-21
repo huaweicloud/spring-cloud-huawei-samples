@@ -22,13 +22,22 @@
 
   <groupId>com.huaweicloud.samples.porter</groupId>
   <artifactId>porter-application</artifactId>
-  <version>1.3.1-Greenwich</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
+
+  <properties>
+    <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+    <spring-cloud.version>Greenwich.SR5</spring-cloud.version>
+    <spring-cloud-huawei.version>1.3.2</spring-cloud-huawei.version>
+    <servicecomb.version>2.0.2</servicecomb.version>
+  </properties>
 
   <modules>
     <module>user-service</module>
     <module>file-service</module>
     <module>servicecomb-edge-service</module>
+    <module>spring-cloud-gateway</module>
+    <module>website</module>
   </modules>
 
   <build>
