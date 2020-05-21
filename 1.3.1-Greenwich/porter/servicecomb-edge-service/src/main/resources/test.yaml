@@ -1,0 +1,165 @@
+---
+swagger: "2.0"
+info:
+  description: "Api Documentation"
+  version: "1.0"
+  title: "swagger definition for org.apache.servicecomb.samples.porter.user.api.UserEndpoint"
+  termsOfService: "urn:tos"
+  contact:
+    name: ""
+    url: ""
+    email: ""
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0"
+  x-java-interface: "cse.gen.porter-application.user-service.UserEndpointIntf"
+host: ""
+basePath: "/"
+schemes: []
+consumes: []
+produces: []
+paths:
+  /v1/user/login:
+    post:
+      tags:
+      - "UserEndpoint"
+      summary: "login"
+      operationId: "login"
+      schemes: []
+      consumes:
+      - "text/plain"
+      - "application/json"
+      produces:
+      - "text/plain"
+      - "application/json"
+      parameters:
+      - name: "password"
+        in: "query"
+        description: "password"
+        required: true
+        type: "string"
+      - name: "userName"
+        in: "query"
+        description: "userName"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          examples: {}
+          headers: {}
+          schema:
+            $ref: "#/definitions/SessionInfo"
+        201:
+          description: "Created"
+          examples: {}
+          headers: {}
+        401:
+          description: "Unauthorized"
+          examples: {}
+          headers: {}
+        403:
+          description: "Forbidden"
+          examples: {}
+          headers: {}
+        404:
+          description: "Not Found"
+          examples: {}
+          headers: {}
+      security: []
+      deprecated: false
+  /v1/user/ping:
+    get:
+      tags:
+      - "UserEndpoint"
+      summary: "ping"
+      operationId: "ping"
+      schemes: []
+      consumes:
+      - "text/plain"
+      - "application/json"
+      produces:
+      - "text/plain"
+      - "application/json"
+      parameters:
+      - name: "message"
+        in: "query"
+        description: "message"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          examples: {}
+          headers: {}
+          schema:
+            type: "string"
+        401:
+          description: "Unauthorized"
+          examples: {}
+          headers: {}
+        403:
+          description: "Forbidden"
+          examples: {}
+          headers: {}
+        404:
+          description: "Not Found"
+          examples: {}
+          headers: {}
+      security: []
+      deprecated: false
+  /v1/user/session:
+    get:
+      tags:
+      - "UserEndpoint"
+      summary: "getSession"
+      operationId: "getSession"
+      schemes: []
+      consumes:
+      - "text/plain"
+      - "application/json"
+      produces:
+      - "text/plain"
+      - "application/json"
+      parameters:
+      - name: "sessionId"
+        in: "query"
+        description: "sessionId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          examples: {}
+          headers: {}
+          schema:
+            $ref: "#/definitions/SessionInfo"
+        401:
+          description: "Unauthorized"
+          examples: {}
+          headers: {}
+        403:
+          description: "Forbidden"
+          examples: {}
+          headers: {}
+        404:
+          description: "Not Found"
+          examples: {}
+          headers: {}
+      security: []
+      deprecated: false
+securityDefinitions: {}
+definitions:
+  SessionInfo:
+    type: "object"
+    discriminator: ""
+    properties:
+      roleName:
+        type: "string"
+      sessiondId:
+        type: "string"
+      userName:
+        type: "string"
+    title: "SessionInfo"
+    description: ""
+    x-java-class: "org.apache.servicecomb.samples.porter.user.api.SessionInfo"
