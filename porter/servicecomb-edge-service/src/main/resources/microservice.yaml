@@ -42,25 +42,19 @@ servicecomb:
   uploads:
     directory: tmp_for_upload_gateway
 
-  samples:
-    logdir: D:\code\servicecomb-samples\porter_lightweight\gateway-service
-    
-  inspector:
-    enabled: false
-
-  executors:
-   Provider:
-     log: servicecomb.samples.executor.groupThreadPool
-     inspector: servicecomb.samples.executor.groupThreadPool
-
   http:
     dispatcher:
       edge:
         default:
           enabled: false
+        http:
+          enabled: true
+          pattern: /ui/(.*)
+          mappings:
+            website:
+              prefixSegmentCount: 0
+              path: "/ui/.*"
+              microserviceName: porter-website
+              versionRule: 0+
       rest:
         pattern: '[/v1/log/|/inspector](.*)'
-
-# This is web root for windows server, change this path according to where you put your source code
-gateway:
-  webroot: /code/spring-cloud-huawei-samples/1.3.1-Greenwich/porter/servicecomb-edge-service/src/main/resources

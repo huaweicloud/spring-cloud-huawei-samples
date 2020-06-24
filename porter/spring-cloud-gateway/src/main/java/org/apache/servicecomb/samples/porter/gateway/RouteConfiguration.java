@@ -116,7 +116,7 @@ public class RouteConfiguration {
     private String getAndSaveSessionInfo(String sessionId) {
       RestTemplate restTemplate = new RestTemplate();
       SessionInfo sessionInfo = restTemplate
-          .getForObject("http://user-service/v1/user/session?sessionId=" + sessionId, SessionInfo.class);
+          .getForObject("http://localhost:8080/v1/user/session?sessionId=" + sessionId, SessionInfo.class);
       String sessionInfoStr = writeJson(sessionInfo);
       sessionCache.put(sessionId, sessionInfoStr);
       return sessionInfoStr;
