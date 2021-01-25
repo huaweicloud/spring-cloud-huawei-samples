@@ -2,20 +2,9 @@ server:
   port: 9090
 
 spring:
-  application:
-    name: basic-gateway
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lowerCaseServiceId: true
-
-    servicecomb:
-      discovery:
-        appName: basic-application
-        serviceName: ${spring.application.name}
-        enabled: true
-        address: http://127.0.0.1:30100
-        version: 0.0.1
-        healthCheckInterval: 30

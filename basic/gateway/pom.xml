@@ -28,36 +28,6 @@
   <artifactId>basic-gateway</artifactId>
   <packaging>jar</packaging>
 
-  <properties>
-    <main.class>org.apache.servicecomb.samples.porter.gateway.SpringCloudGatewayMain</main.class>
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.huaweicloud</groupId>
-        <artifactId>spring-cloud-huawei-dependencies</artifactId>
-        <version>${spring-cloud-huawei.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -65,13 +35,7 @@
     </dependency>
     <dependency>
       <groupId>com.huaweicloud</groupId>
-      <artifactId>spring-cloud-starter-huawei-servicecomb-discovery</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-webmvc</artifactId>
-        </exclusion>
-      </exclusions>
+      <artifactId>spring-cloud-starter-huawei-service-engine-gateway</artifactId>
     </dependency>
   </dependencies>
 

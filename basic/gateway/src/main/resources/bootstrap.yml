@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: basic-gateway
+  cloud:
+    servicecomb:
+      discovery:
+        appName: basic-application
+        serviceName: ${spring.application.name}
+        enabled: true
+        address: http://127.0.0.1:30100
+        version: 0.0.1
+        healthCheckInterval: 30
+      config:
+        serverAddr:  http://127.0.0.1:30113
+        watch:
+          delay: 10000
+
+# need when running in huaweicloud
+#      credentials:
+#        enabled: true
+#        accessKey: your ak
+#        secretKey: your sk
+#        akskCustomCipher: default
+#        project: cn-east-2

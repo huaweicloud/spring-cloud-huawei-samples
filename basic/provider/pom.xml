@@ -29,22 +29,6 @@
   <artifactId>basic-provider</artifactId>
   <packaging>jar</packaging>
 
-  <properties>
-    <main.class>org.apache.servicecomb.samples.porter.user.UserMain</main.class>
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.huaweicloud</groupId>
-        <artifactId>spring-cloud-huawei-dependencies</artifactId>
-        <version>${spring-cloud-huawei.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -56,11 +40,7 @@
     </dependency>
     <dependency>
       <groupId>com.huaweicloud</groupId>
-      <artifactId>spring-cloud-starter-huawei-servicecomb-discovery</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.huaweicloud</groupId>
-      <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
+      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
     </dependency>
   </dependencies>
 
