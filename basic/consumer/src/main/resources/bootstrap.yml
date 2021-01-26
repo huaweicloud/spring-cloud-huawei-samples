@@ -5,20 +5,23 @@ spring:
     servicecomb:
       discovery:
         enabled: true
-        address: http://127.0.0.1:30100
+        watch: false
+        address: https://cse.cn-south-1.myhuaweicloud.com
+        # address: http://127.0.0.1:30100
         appName: basic-application
         serviceName: ${spring.application.name}
         version: 0.0.1
         healthCheckInterval: 30
       config:
-        serverAddr:  http://127.0.0.1:30113
+        serverAddr: https://cse.cn-south-1.myhuaweicloud.com
+        # serverAddr:  http://127.0.0.1:30113
         watch:
           delay: 10000
 
-# need when running in huaweicloud
-#      credentials:
-#        enabled: true
-#        accessKey: your ak
-#        secretKey: your sk
-#        akskCustomCipher: default
-#        project: cn-east-2
+      # need when running in huaweicloud
+      credentials:
+        enabled: true
+        accessKey: your ak
+        secretKey: your sk
+        akskCustomCipher: default
+        project: cn-south-1
