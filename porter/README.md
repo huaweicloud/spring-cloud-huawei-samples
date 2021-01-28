@@ -1,3 +1,42 @@
+# About this Project
+This project provides 5 microservices using Spring Cloud Huawei and ServiceComb Java Chassis.
+
+* website
+  
+  a microservice using spring-boot-web, only has static web pages.
+  
+* user-service
+  
+  a microservice using Spring Cloud and provides a REST interface.  Using Spring Cloud Huawei 
+  to connect to service center.
+
+* file-service
+
+  a microservice using ServiceComb Java Chassis and provides a REST interface. 
+
+* spring-cloud-gateway
+
+  a microservice using Spring Cloud Gateway. Using Spring Cloud Huawei to connect to service center.
+
+* servicecomb-edge-service
+  
+   a microservice using ServiceComb Edge Service.  
+
+
+## startup
+
+  * Install Mysql, and create an account, e.g. user root and password root.
+  * Run create_db_user.sql (In user-service resources/config folder)
+  * Start up user-service, file-service, website and either of spring-cloud-gateway 
+   servicecomb-edge-service.
+   
+## Try it out
+
+  1. Open http://localhost:9090/ui/login.html, login with admin or guest, password is test.
+  2. Select a file and upload. If successful a file ID is printed.
+  3. Delete for and input the file ID. Guest is not allowed to delete file and will fail. 
+ 
+   
 # 项目说明
 
 这个项目基于 [servicecomb porter](https://docs.servicecomb.io/java-chassis/zh_CN/featured-topics/application-porter/)

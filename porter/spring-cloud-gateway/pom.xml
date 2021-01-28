@@ -50,7 +50,7 @@
       </dependency>
       <dependency>
         <groupId>com.huaweicloud</groupId>
-        <artifactId>spring-cloud-huawei-dependencies</artifactId>
+        <artifactId>spring-cloud-huawei-bom</artifactId>
         <version>${spring-cloud-huawei.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -65,7 +65,7 @@
     </dependency>
     <dependency>
       <groupId>com.huaweicloud</groupId>
-      <artifactId>spring-cloud-starter-huawei-servicecomb-discovery</artifactId>
+      <artifactId>spring-cloud-starter-huawei-service-engine-gateway</artifactId>
     </dependency>
   </dependencies>
 

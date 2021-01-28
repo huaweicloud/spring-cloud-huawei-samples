@@ -53,6 +53,14 @@
       <groupId>org.apache.servicecomb</groupId>
       <artifactId>edge-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.servicecomb</groupId>
+      <artifactId>registry-service-center</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

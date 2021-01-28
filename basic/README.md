@@ -1,3 +1,19 @@
+# Description
+This project providers sample to show working with Spring Cloud Microservices. 
+
+* provider
+A Microserivce using Spring Cloud with a REST interface.
+
+* consumer
+A Microserivce using Spring Cloud with a REST interface. Consumer calls provider with RestTemplate.
+
+* gateway
+A Microserivce using Spring Cloud Gateway to forward requests to consumer.
+
+# Usage
+Start 3 microservices and open in browser： http://localhost:9090/sayHello?name=World
+
+
 # 项目说明
 
 这个项目提供了 Spring Cloud Huawei 的简单例子，例子包括：

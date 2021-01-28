@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: spring-cloud-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+    servicecomb:
+      discovery:
+        appName: porter-application
+        serviceName: ${spring.application.name}
+        enabled: true
+        # address: https://cse.cn-south-1.myhuaweicloud.com
+        address: http://127.0.0.1:30100
+        version: 0.0.1
+        healthCheckInterval: 30
+      config:
+        # serverAddr: https://cse.cn-south-1.myhuaweicloud.com
+        serverAddr:  http://127.0.0.1:30113
+        watch:
+          delay: 10000
