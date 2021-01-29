@@ -32,6 +32,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpCookie;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.client.RestTemplate;
@@ -89,7 +90,7 @@ public class RouteConfiguration {
         String sessionId = cookie != null ? cookie.getValue() : null;
         if (StringUtils.isEmpty(sessionId)) {
           ServerHttpResponse response = exchange.getResponse();
-          response.setRawStatusCode(403);
+          response.setStatusCode(HttpStatus.FORBIDDEN);
           return response.setComplete();
         }
 
