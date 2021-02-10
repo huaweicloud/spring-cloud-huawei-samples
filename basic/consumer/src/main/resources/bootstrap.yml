@@ -6,15 +6,16 @@ spring:
       discovery:
         enabled: true
         watch: false
-        address: https://cse.cn-south-1.myhuaweicloud.com
-        # address: http://127.0.0.1:30100
+        # address: https://cse.cn-south-1.myhuaweicloud.com
+        address: http://127.0.0.1:30100
         appName: basic-application
         serviceName: ${spring.application.name}
         version: 0.0.1
         healthCheckInterval: 30
       config:
-        serverAddr: https://cse.cn-south-1.myhuaweicloud.com
-        # serverAddr:  http://127.0.0.1:30113
+        # serverAddr: https://cse.cn-south-1.myhuaweicloud.com
+        serverAddr:  http://127.0.0.1:30113
+        fileSource: consumer.yaml
         watch:
           delay: 10000
 
