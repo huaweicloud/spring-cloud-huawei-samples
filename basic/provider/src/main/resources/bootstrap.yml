@@ -19,9 +19,9 @@ spring:
         watch:
           delay: 10000
 
-# need when running in huaweicloud
+      # Configure AK/SK credentials if needed. Default not enabled.
       credentials:
-        enabled: true
+        enabled: false
         accessKey: your ak
         secretKey: your sk
         akskCustomCipher: default

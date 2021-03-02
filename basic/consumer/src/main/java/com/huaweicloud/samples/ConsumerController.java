@@ -28,6 +28,7 @@ public class ConsumerController {
   @Autowired
   private RestTemplate restTemplate;
 
+  // consumer service which delegate the implementation to provider service.
   @GetMapping("/sayHello")
   public String sayHello(@RequestParam("name") String name) {
     return restTemplate.getForObject("http://basic-provider/sayHello?name={1}", String.class, name);
