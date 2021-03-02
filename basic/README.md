@@ -57,19 +57,19 @@ Open in browser： http://localhost:9090/sayHello?name=World
 
         mvn clean pacakge
 
-* 启动
+* 启动 provider
 
   进入目录 ${Project}/provider/target/
   
         java -jar basic-provider-1.0-SNAPSHOT.jar
 
-* Run consumer
+* 启动 consumer
 
   进入目录 ${Project}/consumer/target/
 
         java -jar basic-consumer-1.0-SNAPSHOT.jar
 
-* Run gateway
+* 启动 gateway
 
   进入目录 ${Project}/gateway/target/
 
@@ -77,4 +77,4 @@ Open in browser： http://localhost:9090/sayHello?name=World
 
 * 测试
 
-启动3个微服务， 然后通过界面访问： http://localhost:9090/sayHello?name=World
+启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World
