@@ -10,9 +10,33 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 * gateway
 A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
-# Usage
-Start 3 microservices and open in browser： http://localhost:9090/sayHello?name=World
+# Build and Run
 
+* Build
+
+        mvn clean pacakge
+
+* Run provider
+
+  In ${Project}/provider/target/
+  
+        java -jar basic-provider-1.0-SNAPSHOT.jar
+
+* Run consumer
+
+  In ${Project}/consumer/target/
+
+        java -jar basic-consumer-1.0-SNAPSHOT.jar
+
+* Run gateway
+
+  In ${Project}/gateway/target/
+
+        java -jar basic-gateway-1.0-SNAPSHOT.jar
+
+* Testing
+
+Open in browser： http://localhost:9090/sayHello?name=World
 
 # 项目说明
 
@@ -28,5 +52,29 @@ Start 3 microservices and open in browser： http://localhost:9090/sayHello?name
 使用 Spring Cloud Gateway 开发一个网关， 网关将所有请求转发到 consumer。 
 
 ## 使用
+
+* 编译
+
+        mvn clean pacakge
+
+* 启动
+
+  进入目录 ${Project}/provider/target/
+  
+        java -jar basic-provider-1.0-SNAPSHOT.jar
+
+* Run consumer
+
+  进入目录 ${Project}/consumer/target/
+
+        java -jar basic-consumer-1.0-SNAPSHOT.jar
+
+* Run gateway
+
+  进入目录 ${Project}/gateway/target/
+
+        java -jar basic-gateway-1.0-SNAPSHOT.jar
+
+* 测试
 
 启动3个微服务， 然后通过界面访问： http://localhost:9090/sayHello?name=World

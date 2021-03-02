@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RouteConfiguration {
 
+  // simple router that routes any requests to basic-consumer service
   @Bean
   public RouteLocator routeLocator(RouteLocatorBuilder builder) {
     return builder.routes()
