@@ -25,9 +25,9 @@
   <modelVersion>4.0.0</modelVersion>
   
   <properties>
-    <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
-    <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
-    <spring-cloud-huawei.version>1.5.1-Hoxton</spring-cloud-huawei.version>
+    <spring-boot.version>2.3.5.RELEASE</spring-boot.version>
+    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+    <spring-cloud-huawei.version>1.5.5-Hoxton</spring-cloud-huawei.version>
   </properties>
 
   <modules>
