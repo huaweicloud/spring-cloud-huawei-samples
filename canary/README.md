@@ -63,7 +63,7 @@ canary-provider的0.0.2版本。
 
 * 编译
 
-        mvn clean pacakge
+        mvn clean package
 
 * 启动 provider
 
