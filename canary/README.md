@@ -12,9 +12,12 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 
 # Build and Run
 
+* Prerequisites
+[Setup CSE environment](../README.md)
+
 * Build
 
-        mvn clean pacakge
+        mvn clean package
 
 * Run provider
 
@@ -54,6 +57,9 @@ canary-provider的0.0.2版本。
 使用 Spring Cloud 开发一个 REST 接口， 接口实现通过 RestTemplate 调用 provider 的接口。 
 
 ## 使用
+
+* 前提条件
+[准备CSE运行环境](../README_CN.md)
 
 * 编译
 

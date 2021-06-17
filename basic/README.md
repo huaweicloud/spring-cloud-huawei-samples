@@ -12,9 +12,12 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
 # Build and Run
 
+* Prerequisites
+[Setup CSE environment](../README.md)
+
 * Build
 
-        mvn clean pacakge
+        mvn clean package
 
 * Run provider
 
@@ -52,6 +55,9 @@ Open in browser： http://localhost:9090/sayHello?name=World
 使用 Spring Cloud Gateway 开发一个网关， 网关将所有请求转发到 consumer。 
 
 ## 使用
+
+* 前提条件
+[准备CSE运行环境](../README_CN.md)
 
 * 编译
 
