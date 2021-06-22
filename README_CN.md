@@ -18,11 +18,10 @@ CSE运行环境准备好以后，编辑每个微服务的 `bootstrap.yml` 文件
 
 ```
 spring:
-  application:
-    name: basic-provider
   cloud:
     servicecomb:
       config:
         serverType: kie
+        serverAddr:  http://127.0.0.1:30110
 ```
 

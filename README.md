@@ -18,11 +18,10 @@ Samples using CSE 1.0 in default，the config service is config-center. If using
 
 ```
 spring:
-  application:
-    name: basic-provider
   cloud:
     servicecomb:
       config:
         serverType: kie
+        serverAddr:  http://127.0.0.1:30110
 ```
 
