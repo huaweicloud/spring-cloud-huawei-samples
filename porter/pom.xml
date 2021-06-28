@@ -28,8 +28,8 @@
   <properties>
     <spring-boot.version>2.3.5.RELEASE</spring-boot.version>
     <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
-    <spring-cloud-huawei.version>1.5.6-Hoxton</spring-cloud-huawei.version>
-    <servicecomb.version>2.1.5</servicecomb.version>
+    <spring-cloud-huawei.version>1.6.0-Hoxton</spring-cloud-huawei.version>
+    <servicecomb.version>2.3.0</servicecomb.version>
   </properties>
 
   <modules>
