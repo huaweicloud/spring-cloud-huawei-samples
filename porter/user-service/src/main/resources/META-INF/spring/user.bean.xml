@@ -25,9 +25,9 @@
     <bean id="dataSource"
         class="org.apache.commons.dbcp2.BasicDataSource"
         destroy-method="close">
-        <property name="driverClassName" value="${db.driverClassName:com.mysql.jdbc.Driver}" />
+        <property name="driverClassName" value="${db.driverClassName:com.mysql.cj.jdbc.Driver}" />
         <property name="url"
-            value="${db.url:jdbc:mysql://localhost/porter_user_db}" />
+            value="${db.url:jdbc:mysql://localhost/porter_user_db?serverTimezone=UTC}" />
         <property name="username" value="${db.username:root}" />
         <property name="password" value="${db.password:root}" />
     </bean>
