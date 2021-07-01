@@ -21,7 +21,7 @@ server:
 
 spring:
   application:
-    name : eureka-client
+    name : eureka-consumer
 eureka:
   client:
     serviceUrl:

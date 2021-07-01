@@ -21,7 +21,8 @@ server:
 eureka:
   instance:
     hostname : localhost
-
+  application:
+    name : eureka-provider
   client:
     registerWithEureka : false
     fetchRegistry : false
