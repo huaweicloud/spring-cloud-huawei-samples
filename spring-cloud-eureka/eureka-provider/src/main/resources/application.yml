@@ -16,12 +16,17 @@
 ## limitations under the License.
 ## ---------------------------------------------------------------------------
 server:
-  port: 9090
+  port : 8085
 
-spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lowerCaseServiceId: true
+eureka:
+  instance:
+    hostname : localhost
+  application:
+    name : eureka-provider
+  client:
+    registerWithEureka : false
+    fetchRegistry : false
+    serviceUrl:
+      defaultZone : http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+      enable-self-preservation: true

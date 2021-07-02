@@ -15,13 +15,16 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ## ---------------------------------------------------------------------------
+
 server:
-  port: 9090
+  port: 8082
 
 spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lowerCaseServiceId: true
+  application:
+    name : eureka-consumer
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://localhost:8085/eureka/
+
+
