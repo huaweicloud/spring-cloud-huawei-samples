@@ -26,10 +26,10 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.3.5.RELEASE</spring-boot.version>
-    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
-    <spring-cloud-huawei.version>1.6.0-Hoxton</spring-cloud-huawei.version>
-    <servicecomb.version>2.3.0</servicecomb.version>
+    <spring-boot.version>2.5.3</spring-boot.version>
+    <spring-cloud.version>2020.0.3</spring-cloud.version>
+    <spring-cloud-huawei.version>1.6.1-2020.0.x</spring-cloud-huawei.version>
+    <servicecomb.version>2.5.0</servicecomb.version>
   </properties>
 
   <modules>
