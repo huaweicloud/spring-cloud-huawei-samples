@@ -2,6 +2,13 @@
 
 这个项目包含Spring Cloud Huawei使用的例子，详细内容请查看每个子项目的说明。
 
+分支信息:
+
+* master: Spring Cloud 2020.0.x
+* Hoxton: Spring Cloud Hoxton
+* Greenwich: Spring Cloud Greenwich
+* Finchley: Spring Cloud Finchley
+
 
 ## 前提条件
 

@@ -2,6 +2,12 @@
 
 This project provide samples for Spring Cloud Huawei. Read each sub-project for details about each sample.
 
+Branches:
+
+* master: for Spring Cloud 2020.0.x
+* Hoxton: for Spring Cloud Hoxton
+* Greenwich: for Spring Cloud Greenwich
+* Finchley: for Spring Cloud Finchley
 
 ## Prerequisites
 
