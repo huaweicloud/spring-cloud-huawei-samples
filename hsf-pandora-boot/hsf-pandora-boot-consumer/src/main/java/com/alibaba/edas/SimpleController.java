@@ -12,10 +12,10 @@ public class SimpleController {
 
 
     @Autowired
-    private HelloService helloService;
+    private HelloServiceFeignClient helloServiceFeignClient;
 
     @RequestMapping(value = "/hsf-echo/{str}", method = RequestMethod.GET)
     public String echo(@PathVariable String str) {
-        return helloService.echo(str);
+        return helloServiceFeignClient.echo(str);
     }
 }
