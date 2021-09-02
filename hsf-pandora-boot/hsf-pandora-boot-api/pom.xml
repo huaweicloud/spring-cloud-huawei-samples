@@ -10,7 +10,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>hsf-pandora-boot-provider</artifactId>
+    <artifactId>hsf-pandora-boot-api</artifactId>
 
     <properties>
         <spring-boot.version>2.5.3</spring-boot.version>
@@ -20,21 +20,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba.edas</groupId>
-            <artifactId>hsf-pandora-boot-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.huaweicloud</groupId>
             <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <!-- for unit test-->

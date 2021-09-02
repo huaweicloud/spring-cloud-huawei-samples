@@ -1,9 +1,10 @@
 package com.alibaba.edas;
 
-import com.alibaba.boot.hsf.annotation.HSFProvider;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-
-@HSFProvider(serviceInterface = HelloService.class, serviceVersion = "1.0.0")
+@RestController
+@RequestMapping("/hello")
 public class HelloServiceImpl implements HelloService {
     @Override
     public String echo(String string) {
