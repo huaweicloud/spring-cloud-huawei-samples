@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients(clients= {HelloServiceFeignClient.class})
+@EnableFeignClients
 public class HSFConsumerApplication {
 
     public static void main(String[] args) {
