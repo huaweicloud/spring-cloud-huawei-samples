@@ -26,7 +26,8 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.5.3</spring-boot.version>
+    <spring-cloud-huawei.version>1.6.0-Hoxton</spring-cloud-huawei.version>  
+ 	<spring-boot.version>2.5.3</spring-boot.version>
     <spring-cloud.version>2020.0.3</spring-cloud.version>
     <spring-cloud-huawei.version>1.8.0-2020.0.x</spring-cloud-huawei.version>
   </properties>
