@@ -21,7 +21,10 @@ server:
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lowerCaseServiceId: true
+      routes:
+        - id: consumer
+          uri: lb://basic-consumer
+          filters:
+            - name: governance
+          predicates:
+            - Path=/**
