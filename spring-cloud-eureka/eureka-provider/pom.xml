@@ -25,7 +25,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>eureka-consumer</artifactId>
+    <artifactId>eureka-provider</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
