@@ -1,5 +1,5 @@
 server:
-  port: 8868
+  port: 9080
 
 dubbo:
   application:

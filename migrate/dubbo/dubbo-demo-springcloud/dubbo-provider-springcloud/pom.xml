@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dubbo-provider</artifactId>
+    <artifactId>dubbo-provider-springcloud</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.huaweicloud</groupId>
-            <artifactId>common-api</artifactId>
+            <artifactId>common-api-springcloud</artifactId>
             <version>${project.version}</version>
         </dependency>
 
