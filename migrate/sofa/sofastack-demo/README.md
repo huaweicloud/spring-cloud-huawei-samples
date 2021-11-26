@@ -6,5 +6,5 @@
 2、Start startup.bat in the extracted registry-integration subfolder bin
 3、Start SafaProviderApplication
 4、Start SafaConsumerApplication
-5、Visit http://localhost:9090/hello?name=World (The page displays "Hello world, I am from provider", indicating that the services are working normally)
+5、Visit http://localhost:9090/hello?name=World (The page displays "Hello World, I am from provider", indicating that the services are working normally)
 
