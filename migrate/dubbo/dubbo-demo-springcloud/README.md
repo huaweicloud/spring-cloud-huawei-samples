@@ -6,5 +6,5 @@
 2、Start start.bat in the extracted local-cse-1.0.10 folder
 3、Start ProviderApplication
 4、Start ConsumerApplication
-5、Visit http://localhost:8878/hello?name=World (The page displays "Hello world, I am from provider", indicating that the services are working normally)
+5、Visit http://localhost:8878/hello?name=World (The page displays "Hello World, I am from provider", indicating that the services are working normally)
 
