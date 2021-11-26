@@ -6,5 +6,5 @@
 2、Start zkserver.cmd in the extracted zookeeper subfolder bin
 3、Start DubboProviderApplication
 4、Start DubboConsumerApplication
-5、Visit http://localhost:8878/hello?name=World (The page displays "Hello world, I am from provider", indicating that the services are working normally)
+5、Visit http://localhost:8878/hello?name=World (The page displays "Hello World, I am from provider", indicating that the services are working normally)
 
