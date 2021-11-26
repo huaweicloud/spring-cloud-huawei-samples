@@ -1,0 +1,31 @@
+server:
+  port: 18083
+spring:
+  application:
+    name: tsf-consumer
+
+feign:
+  tsf:
+    enabled: true
+
+#本地测试时打开
+tsf_namespace_id: default_namespace
+
+#方便本地自测调试
+tsf:
+  circuit-breaker:
+    rules:
+      - targetServiceName: tsf-provider
+        isolationLevel: SERVICE
+        targetNamespaceId: "default_namespace"
+        strategyList:
+          - slidingWindowSize: 10
+            minimumNumberOfCalls: 10
+            failureRateThreshold: 40
+            waitDurationInOpenState: 5
+            maxEjectionPercent: 51
+            slowCallDurationThreshold: 800
+            slowCallRateThreshold: 50
+            apiList:
+              - method: GET
+                path: "/hello/{name}"

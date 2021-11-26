@@ -1,7 +1,7 @@
 
-dubbo-demo project：
+##dubbo-demo project：
    A simple micro service structure based on Dubbo framework and zookeeper as the registry center
-Usage:
+##Usage:
 1、Download zookeeper, download address https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.3/apache-zookeeper-3.6.3-bin.tar.gz
 2、Start zkserver.cmd in the extracted zookeeper subfolder bin
 3、Start DubboProviderApplication

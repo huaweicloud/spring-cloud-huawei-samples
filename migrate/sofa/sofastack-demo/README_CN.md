@@ -1,7 +1,7 @@
 
-sofastack-demo 项目：
+##sofastack-demo 项目：
    基于SofaStack框架，sofa-registry为注册中心的简单微服务结构
-使用：
+##使用：
 1、下载sofa-registry，下载地址 https://github.com/sofastack/sofa-registry/releases
 2、在解压后的registry-integration子文件夹bin中启动startup.bat
 3、启动 SofaProviderApplication
