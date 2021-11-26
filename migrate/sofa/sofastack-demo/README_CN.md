@@ -1,5 +1,5 @@
 
-##sofastack-demo 项目：
+## sofastack-demo 项目：
    基于SofaStack框架，sofa-registry为注册中心的简单微服务结构
 ##使用：
 1、下载sofa-registry，下载地址 https://github.com/sofastack/sofa-registry/releases
