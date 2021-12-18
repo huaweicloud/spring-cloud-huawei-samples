@@ -17,14 +17,14 @@
 
 package com.alibaba.edas.serialization.test;
 
-public class Base2 {
-  private String name;
+public class ChildBase3 extends Base3 {
+  private String age;
 
-  public String getName() {
-    return name;
+  public String getAge() {
+    return age;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setAge(String age) {
+    this.age = age;
   }
 }

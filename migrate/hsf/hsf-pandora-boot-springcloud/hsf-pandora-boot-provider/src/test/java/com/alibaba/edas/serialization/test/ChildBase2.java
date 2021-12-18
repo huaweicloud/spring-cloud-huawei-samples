@@ -17,14 +17,18 @@
 
 package com.alibaba.edas.serialization.test;
 
-public class Base2 {
-  private String name;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
-  public String getName() {
-    return name;
+@JsonTypeInfo(use = Id.CLASS, defaultImpl = ChildBase2.class)
+public class ChildBase2 extends Base2 {
+  private String age;
+
+  public String getAge() {
+    return age;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setAge(String age) {
+    this.age = age;
   }
 }
