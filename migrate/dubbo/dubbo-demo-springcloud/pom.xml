@@ -24,7 +24,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <huaweicloud.version>1.6.1-2020.0.x</huaweicloud.version>
+        <huaweicloud.version>1.8.0-2020.0.x</huaweicloud.version>
         <openfeign.version>3.0.3</openfeign.version>
     </properties>
 
