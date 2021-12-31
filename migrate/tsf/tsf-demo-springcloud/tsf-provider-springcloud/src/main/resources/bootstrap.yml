@@ -1,0 +1,16 @@
+server:
+  port: 18081
+spring:
+  application:
+    name: tsf-provider
+  cloud:
+    servicecomb:
+      discovery:
+        enabled: true
+        address: http://127.0.0.1:30100
+        appName: cloud-application
+        serviceName: ${spring.application.name}
+        version: 0.0.1
+        healthCheckInterval: 30
+      config:
+        serverAddr: http://127.0.0.1:30113

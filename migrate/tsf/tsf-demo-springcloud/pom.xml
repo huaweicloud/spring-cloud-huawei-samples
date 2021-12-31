@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.3</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>com.huaweicloud</groupId>
+  <artifactId>tsf-demo-springcloud</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <modules>
+    <module>tsf-provider-springcloud</module>
+    <module>tsf-consumer-springcloud</module>
+  </modules>
+
+  <properties>
+    <huaweicloud.version>1.6.1-2020.0.x</huaweicloud.version>
+    <openfeign.version>3.0.3</openfeign.version>
+  </properties>
+
+</project>
