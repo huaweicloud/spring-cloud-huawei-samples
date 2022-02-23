@@ -22,14 +22,15 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.context.ConfigurableWebServerApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ServiceCombListener implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
     private ServiceCombAutoServiceRegistration registration;
 
     @Override
-    @Deprecated
     public void onApplicationEvent(ApplicationReadyEvent event) {
         ApplicationContext context = event.getApplicationContext();
         if (context instanceof ConfigurableWebServerApplicationContext) {
