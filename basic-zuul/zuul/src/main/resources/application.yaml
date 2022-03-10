@@ -20,5 +20,5 @@ server:
 zuul:
   routes:
     zuul-server:
-      serviceId: basic-consumer
+      serviceId: basic-zuul-consumer
       path: /**

@@ -43,6 +43,8 @@ A Microserivce using Spring Cloud Netflix zuul to forward requests to consumer.
 Open in browser： http://localhost:9090/sayHello?name=World
 
 # 项目说明
+pom中的1.8.1-Hoxton版本为1.8.0-Hoxton升级版，兼容springboot版本为2.3.x；
+zuul的2.2.10.RELEASE版本兼容使用springboot版本2.3.12.RELEASE。
 
 这个项目提供了 Spring Cloud Huawei 的简单例子，与basic工程相比，改用zuul做网关实现请求分发，例子包括：
 
