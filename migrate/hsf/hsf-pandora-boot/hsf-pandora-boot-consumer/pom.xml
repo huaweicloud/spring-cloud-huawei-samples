@@ -4,48 +4,43 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
     <parent>
         <groupId>com.alibaba.edas</groupId>
         <artifactId>hsf-pandora-boot-parent</artifactId>
         <version>1.0</version>
     </parent>
-
-    <artifactId>hsf-pandora-boot-provider</artifactId>
+    
+    <artifactId>hsf-pandora-boot-consumer</artifactId>
 
     <properties>
-        <spring-boot.version>2.5.3</spring-boot.version>
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
-        <spring-cloud-huawei.version>1.8.0-2020.0.x</spring-cloud-huawei.version>
+        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+        <pandora-boot.version>2019-06-stable</pandora-boot.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba.edas</groupId>
-            <artifactId>hsf-pandora-boot-api</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>pandora-hsf-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.huaweicloud</groupId>
-            <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>com.taobao.pandora</groupId>
+            <artifactId>taobao-hsf.sar</artifactId>
         </dependency>
 
         <!-- for unit test-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>com.taobao.pandora</groupId>
+            <artifactId>pandora-boot-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -60,16 +55,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.huaweicloud</groupId>
-                <artifactId>spring-cloud-huawei-bom</artifactId>
-                <version>${spring-cloud-huawei.version}</version>
+                <groupId>com.taobao.pandora</groupId>
+                <artifactId>pandora-boot-starter-bom</artifactId>
+                <version>${pandora-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -88,11 +76,19 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>com.taobao.pandora</groupId>
+                <artifactId>pandora-boot-maven-plugin</artifactId>
+                <version>2.1.11.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
 
 </project>
