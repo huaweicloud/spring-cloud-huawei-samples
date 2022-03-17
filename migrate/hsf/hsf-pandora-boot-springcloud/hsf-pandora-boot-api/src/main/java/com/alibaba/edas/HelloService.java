@@ -1,12 +1,13 @@
 package com.alibaba.edas;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 public interface HelloService {
-    @PostMapping(value = "/echo")
-    @ResponseBody
-    String echo(@RequestParam("name") String string);
+  @ResponseBody
+  @PostMapping(value = "/echo")
+    String echo(@RequestParam(value="string") String string);
 }
