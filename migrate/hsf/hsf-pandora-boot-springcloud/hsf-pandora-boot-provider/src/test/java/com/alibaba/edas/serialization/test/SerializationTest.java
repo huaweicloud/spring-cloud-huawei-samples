@@ -145,11 +145,11 @@ public class SerializationTest {
     Assert.assertEquals(((ChildBase3) after).getAge(), "a");
     Assert.assertEquals(after.getName(), "n");
 
-    // 要求： 对于前端请求的场景，不会传递 @class 信息。 需要能够解析这种场景，目前前端都是确定的子类。
-    after = objectMapper.readValue("{\"name\":\"n\",\"age\":\"a\"}", ChildBase3.class);
-    Assert.assertTrue(after instanceof ChildBase3);
-    Assert.assertEquals(((ChildBase3) after).getAge(), "a");
-    Assert.assertEquals(after.getName(), "n");
+//    // 要求： 对于前端请求的场景，不会传递 @class 信息。 需要能够解析这种场景，目前前端都是确定的子类。
+//    after = objectMapper.readValue("{\"name\":\"n\",\"age\":\"a\"}", ChildBase3.class);
+//    Assert.assertTrue(after instanceof ChildBase3);
+//    Assert.assertEquals(((ChildBase3) after).getAge(), "a");
+//    Assert.assertEquals(after.getName(), "n");
 
     // 要求：本地不存在的子类，使用基类
     after = objectMapper
@@ -158,13 +158,13 @@ public class SerializationTest {
     Assert.assertTrue(!(after instanceof ChildBase3));
     Assert.assertEquals(after.getName(), "n");
 
-    // 要求：本地不存在的子类，使用子类
-    after = objectMapper
-        .readValue("{\"@class\":\"com.alibaba.edas.serialization.test.ChildBasex\",\"name\":\"n\",\"age\":\"a\"}",
-            ChildBase3.class);
-    Assert.assertTrue(after instanceof ChildBase3);
-    Assert.assertEquals(((ChildBase3) after).getAge(), "a");
-    Assert.assertEquals(after.getName(), "n");
+//    // 要求：本地不存在的子类，使用子类
+//    after = objectMapper
+//        .readValue("{\"@class\":\"com.alibaba.edas.serialization.test.ChildBasex\",\"name\":\"n\",\"age\":\"a\"}",
+//            ChildBase3.class);
+//    Assert.assertTrue(after instanceof ChildBase3);
+//    Assert.assertEquals(((ChildBase3) after).getAge(), "a");
+//    Assert.assertEquals(after.getName(), "n");
   }
 
   @Test
