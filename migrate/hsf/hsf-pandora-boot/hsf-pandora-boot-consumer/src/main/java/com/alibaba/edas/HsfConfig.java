@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HsfConfig {
 
-    @HSFConsumer(clientTimeout = 3000, serviceVersion = "1.0.0")
+    @HSFConsumer(clientTimeout = 3000, serviceGroup = "hsf-pandora-boot-provider", serviceVersion = "1.0.0")
     private HelloService helloService;
 
 }
