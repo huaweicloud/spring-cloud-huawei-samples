@@ -5,9 +5,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>dubbo-provider-springcloud</module>
-        <module>common-api-springcloud</module>
-        <module>dubbo-consumer-springcloud</module>
+        <module>dubbo-provider</module>
+        <module>common-api</module>
+        <module>dubbo-consumer</module>
     </modules>
 
     <parent>
