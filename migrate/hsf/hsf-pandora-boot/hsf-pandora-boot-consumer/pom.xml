@@ -20,6 +20,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.alibaba.edas</groupId>
+            <artifactId>hsf-pandora-boot-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>pandora-hsf-spring-boot-starter</artifactId>
         </dependency>
