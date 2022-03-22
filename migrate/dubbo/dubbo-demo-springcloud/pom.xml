@@ -18,9 +18,9 @@
     </parent>
 
     <groupId>com.huaweicloud</groupId>
-    <artifactId>dubbo-demo-springcloud</artifactId>
+    <artifactId>dubbo-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dubbo-demo-springcloud</name>
+    <name>springboot-dubbo-demo</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
