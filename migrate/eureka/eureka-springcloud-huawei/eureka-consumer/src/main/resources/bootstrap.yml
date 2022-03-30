@@ -1,0 +1,15 @@
+spring:
+  application:
+    # 微服务名称，默认使用ServiceStage组件名称，建议修改为固定值，因为微服务名称会被客户端使用，不能轻易变化。
+    name: ${CAS_COMPONENT_NAME}
+  cloud:
+    servicecomb:
+      discovery:
+        # 应用名称，默认使用ServiceStage组件名称，建议修改。可以使用环境变量值，只有应用名称相同的微服务才能够相互发现。
+        appName: ${CAS_APPLICATION_NAME:default-application}
+        serviceName: ${spring.application.name}
+        address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
+        version: 0.0.1
+      config:
+        serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
+        serverType: kie
