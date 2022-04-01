@@ -38,7 +38,7 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
 * Testing
 
-Open in browser： http://localhost:9090/sayHello?name=World or http://localhost:9090/sayHellofeign?name=zhangsan
+Open in browser： http://localhost:9090/sayHello?name=World or http://localhost:9090/sayHellofeign?name=World
 # 项目说明
 
 这个项目提供了 Spring Cloud Huawei 的简单例子，例子包括：
@@ -81,4 +81,4 @@ Open in browser： http://localhost:9090/sayHello?name=World or http://localhost
 
 * 测试
 
-启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World;http://localhost:9090/sayHelloFeign?name=zhangsan
+启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World 或者 http://localhost:9090/sayHelloFeign?name=World

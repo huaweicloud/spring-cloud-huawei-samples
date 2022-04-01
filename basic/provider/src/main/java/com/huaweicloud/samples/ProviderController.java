@@ -13,6 +13,6 @@ public class ProviderController {
   }
   @GetMapping("/sayHelloFeign")
   public String sayHelloFeign(@RequestParam("name") String name) {
-    return "HelloFeign " + name;
+    return "Hello " + name;
   }
 }
