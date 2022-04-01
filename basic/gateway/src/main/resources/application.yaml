@@ -11,10 +11,4 @@ spring:
           filters:
             - name: governance
           predicates:
-            - Path=/sayHello
-        - id: feign-consumer
-          uri: lb://basic-feign-consumer
-          filters:
-            - name: governance
-          predicates:
-            - Path=/sayHi
+            - Path=/**
