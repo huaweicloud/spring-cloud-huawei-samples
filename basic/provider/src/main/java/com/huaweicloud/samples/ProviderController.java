@@ -11,4 +11,8 @@ public class ProviderController {
   public String sayHello(@RequestParam("name") String name) {
     return "Hello " + name;
   }
+  @GetMapping("/sayHelloFeign")
+  public String sayHelloFeign(@RequestParam("name") String name) {
+    return "Hello " + name;
+  }
 }

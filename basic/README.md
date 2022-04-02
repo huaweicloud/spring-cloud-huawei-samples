@@ -5,8 +5,7 @@ This project providers sample to show working with Spring Cloud Microservices.
 A Microserivce using Spring Cloud with a REST interface.
 
 * consumer
-A Microserivce using Spring Cloud with a REST interface. Consumer calls provider with RestTemplate.
-
+A Microserivce using Spring Cloud with a REST interface. Consumer calls provider with RestTemplate and Feign.
 * gateway
 A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
@@ -30,7 +29,7 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
   In ${Project}/consumer/target/
 
         java -jar basic-consumer-1.0-SNAPSHOT.jar
-
+                
 * Run gateway
 
   In ${Project}/gateway/target/
@@ -39,8 +38,7 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
 * Testing
 
-Open in browser： http://localhost:9090/sayHello?name=World
-
+Open in browser： http://localhost:9090/sayHello?name=World or http://localhost:9090/sayHellofeign?name=World
 # 项目说明
 
 这个项目提供了 Spring Cloud Huawei 的简单例子，例子包括：
@@ -49,7 +47,7 @@ Open in browser： http://localhost:9090/sayHello?name=World
 使用 Spring Cloud 开发一个 REST 接口。
 
 * consumer
-使用 Spring Cloud 开发一个 REST 接口， 接口实现通过 RestTemplate 调用 provider 的接口。 
+使用 Spring Cloud 开发一个 REST 接口， 接口实现分別通过 RestTemplate和Feign 调用 provider 的接口。
 
 * gateway
 使用 Spring Cloud Gateway 开发一个网关， 网关将所有请求转发到 consumer。 
@@ -83,4 +81,4 @@ Open in browser： http://localhost:9090/sayHello?name=World
 
 * 测试
 
-启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World
+启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World 或者 http://localhost:9090/sayHelloFeign?name=World
