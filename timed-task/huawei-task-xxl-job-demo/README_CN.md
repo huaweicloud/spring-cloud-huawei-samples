@@ -4,7 +4,7 @@
 
 目录说明：
 
-- huawei-task-job: spring cloud huawei整合CSE、Xxl-Job简单代码示例
+- huawei-task-xxl-job-demo: spring cloud huawei整合CSE、Xxl-Job简单代码示例
 
 ## 前提条件
 
