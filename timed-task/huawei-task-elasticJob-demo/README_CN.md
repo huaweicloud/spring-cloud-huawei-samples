@@ -24,9 +24,10 @@
 
 
 ### 补充
-如需搭建任务管理平台或更多样化开发风格可参考[elasticJob开发指南](https://shardingsphere.apache.org/elasticjob/current/cn/user-manual/)
 
+- 如需搭建任务管理平台或更多样化开发风格可参考[elasticJob开发指南](https://shardingsphere.apache.org/elasticjob/current/cn/user-manual/)
 
+- ElasticJob具体实现原理[参考资料](https://shardingsphere.apache.org/elasticjob/legacy/lite-2.x/03-design/lite-design/)
 
 
   
