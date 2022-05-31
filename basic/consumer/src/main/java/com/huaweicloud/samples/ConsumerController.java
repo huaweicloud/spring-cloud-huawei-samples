@@ -14,6 +14,13 @@ public class ConsumerController {
   @Autowired
   private FeignConsumerService feignConsumerService;
 
+  private ConfigListen configListen;
+
+  @Autowired
+  public ConsumerController(ConfigListen configListen) {
+    this.configListen = configListen;
+  }
+
   // consumer service which delegate the implementation to provider service.
   @GetMapping("/sayHello")
   public String sayHello(@RequestParam("name") String name) {
