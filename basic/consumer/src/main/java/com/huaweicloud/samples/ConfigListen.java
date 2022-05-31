@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * 监听配置变化
+ * Examples to show how to listen configuration change
  */
 @Component
 public class ConfigListen {
