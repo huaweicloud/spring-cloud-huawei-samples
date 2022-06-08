@@ -31,7 +31,7 @@ Running samples, must first prepare CSE environment（../CSE-ENV.md）
 
 And edit `bootstrap.yml` for each microserivce, configure the correct CSE services, like config center and service center.
 
-Samples using CSE 2.0 in default，the config service is kie. 
+Samples using CSE 2.0 in default，the config service is kie
 
 ```
 spring:
@@ -40,6 +40,17 @@ spring:
       config:
         serverType: kie
         serverAddr:  http://127.0.0.1:30110
+```
+If using CSE 1.0，config service change to  config-center. 
+
+```
+spring:
+  cloud:
+    servicecomb:
+      config:
+        serverType: config-center
+        serverAddr:  http://127.0.0.1:30113
+        fileSource: consumer.yaml
 ```
 
 
