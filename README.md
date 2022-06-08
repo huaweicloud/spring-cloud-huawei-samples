@@ -17,15 +17,16 @@ Directory description:
  
 Branches:
 
-* master: for Spring Cloud 2020.0.x/2021.0.x
-* Hoxton: for Spring Cloud Hoxton
-* Greenwich: for Spring Cloud Greenwich(No longer maintained, not recommended)
-* Finchley: for Spring Cloud Finchley(No longer maintained, not recommended)
+* master: for Spring Cloud 2021.0.x
+* 2020.0.x: for Spring Cloud 2020.0.x
+* Hoxton: for Spring Cloud Hoxton(EOL, not for pruducton use)
+* Greenwich: for Spring Cloud Greenwich(Community maintenance is not recommended for production environment)
+* Finchley: for Spring Cloud Finchley(Community maintenance is not recommended for production environment)
                                      
 
 ## Prerequisites
 
-Running samples, must first prepare CSE environment（../CSE-ENV.md）
+Running samples, must first prepare CSE environment（../CSE-ENV_CN.md）
 
 [More information](https://support.huaweicloud.com/devg-cse/cse_devg_0006.html) can be found in Huawei Cloud. 
 

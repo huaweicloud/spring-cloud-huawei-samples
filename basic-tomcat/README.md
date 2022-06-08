@@ -18,7 +18,7 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 # Build and Run
 
 * Prerequisites
-[Setup CSE environment](../CSE-ENV.md)
+[Setup CSE environment](../CSE-ENV_CN.md)
 
 * Build
 
@@ -60,7 +60,7 @@ Open in browser： http://localhost:9090/sayHello?name=World
 ## 使用
 
 * 前提条件
-[准备CSE运行环境](../CSE-ENV.md)
+[准备CSE运行环境](../CSE-ENV_CN.md)
 
 * 编译
 
