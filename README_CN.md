@@ -17,15 +17,16 @@
   
 分支信息:
 
-* master: Spring Cloud 2020.0.x/2021.0.x
-* Hoxton: Spring Cloud Hoxton
-* Greenwich: Spring Cloud Greenwich(已经不再维护，不建议使用)
-* Finchley: Spring Cloud Finchley（已经不再维护，不建议使用）
+* master: Spring Cloud 2020.0.x
+* 2020.0.x: Spring Cloud 2020.0.x
+* Hoxton: Spring Cloud Hoxton(EOL，不用于生产环境使用)
+* Greenwich: Spring Cloud Greenwich(社区停止维护，不建议生产环境使用)
+* Finchley: Spring Cloud Finchley（社区停止维护，不建议生产环境使用）
 
 
 ## 前提条件
 
-运行这些例子之前，需要先准备CSE运行环境（../CSE-ENV.md）
+运行这些例子之前，需要先准备CSE运行环境（../CSE-ENV_CN.md）
 
 更多信息可以参考[开发指南](https://support.huaweicloud.com/devg-cse/cse_devg_0006.html) 
 
