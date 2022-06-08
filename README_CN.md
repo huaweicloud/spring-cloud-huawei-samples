@@ -29,19 +29,31 @@
 
 更多信息可以参考[开发指南](https://support.huaweicloud.com/devg-cse/cse_devg_0006.html) 
 
-CSE运行环境准备好以后，编辑每个微服务的 `bootstrap.yml` 文件，配置正确的 CSE 服务信息，比如配置中心、注册中心的地址。
+CSE运行环境准备好以后，编辑每个微服务的 bootstrap.yml 文件，配置正确的 CSE 服务信息，比如配置中心、注册中心的地址。
 
-例子默认使用微服务引擎2.0版本，配置中心的类型为 kie：
+例子默认使用微服务引擎2.0版本， 配置中心类型为 kie：
+ 
+```
+ spring:
+   cloud:
+     servicecomb:
+       config:
+         serverType: kie
+         serverAddr:  http://127.0.0.1:30110
+```
+如果使用微服务引擎1.0版本，配置中心的类型需修改为 config-center：
 
 ```
 spring:
   cloud:
     servicecomb:
       config:
-        serverType: kie
-        serverAddr:  http://127.0.0.1:30110
+        serverType: config-center
+        serverAddr:  http://127.0.0.1:30113
+        fileSource: consumer.yaml
 ```
  
+
 
 ## 微服务引擎 CSE
 

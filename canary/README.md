@@ -13,7 +13,7 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 # Build and Run
 
 * Prerequisites
-[Setup CSE environment](../README.md)
+[Setup CSE environment](../CSE-ENV.md)
 
 * Build
 
@@ -59,7 +59,7 @@ canary-provider的0.0.2版本。
 ## 使用
 
 * 前提条件
-[准备CSE运行环境](../README_CN.md)
+[准备CSE运行环境](../CSE-ENV.md)
 
 * 编译
 
