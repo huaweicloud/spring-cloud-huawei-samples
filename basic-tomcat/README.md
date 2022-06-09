@@ -18,7 +18,7 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 # Build and Run
 
 * Prerequisites
-[Setup CSE environment](../CSE-ENV_CN.md)
+[Setup CSE environment](../CSE-ENV.md)
 
 * Build
 
