@@ -26,7 +26,7 @@
 
 ## 前提条件
 
-运行这些例子之前，需要先[准备CSE运行环境]（../CSE-ENV_CN.md）
+运行这些例子之前，需要先[准备CSE运行环境](/CSE-ENV_CN.md)
 
 更多信息可以参考[开发指南](https://support.huaweicloud.com/devg-cse/cse_devg_0006.html) 
 
