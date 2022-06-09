@@ -24,7 +24,7 @@ This project provides 5 microservices using Spring Cloud Huawei and ServiceComb 
 
 
 ## startup
-  * [Setup CSE environment](../CSE-ENV_CN.md)
+  * [Setup CSE environment](../CSE-ENV.md)
   * Install Mysql, and create an account, e.g. user root and password root.
   * Run create_db_user.sql (In user-service resources/config folder)
   * Start up user-service, file-service, website and either of spring-cloud-gateway 

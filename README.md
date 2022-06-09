@@ -26,7 +26,7 @@ Branches:
 
 ## Prerequisites
 
-Running samples, must first prepare CSE environment（../CSE-ENV_CN.md）
+Running samples, must first [prepare CSE environment]（../CSE-ENV.md）
 
 [More information](https://support.huaweicloud.com/devg-cse/cse_devg_0006.html) can be found in Huawei Cloud. 
 
