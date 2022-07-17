@@ -1,19 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>com.huaweicloud.samples.porter</groupId>
     <artifactId>porter-application</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
+  <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>porter-spring-cloud-gateway</artifactId>
+  <artifactId>porter-app</artifactId>
   <packaging>jar</packaging>
-
-  <properties>
-    <main.class>org.apache.servicecomb.samples.porter.gateway.SpringCloudGatewayMain</main.class>
-  </properties>
 
   <dependencyManagement>
     <dependencies>
@@ -44,10 +40,9 @@
   <dependencies>
     <dependency>
       <groupId>com.huaweicloud</groupId>
-      <artifactId>spring-cloud-starter-huawei-service-engine-gateway</artifactId>
+      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
@@ -56,4 +51,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>

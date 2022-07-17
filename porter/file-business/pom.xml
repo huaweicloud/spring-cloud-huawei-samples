@@ -8,15 +8,29 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>porter-file-service</artifactId>
+  <artifactId>file-business</artifactId>
   <packaging>jar</packaging>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.apache.servicecomb</groupId>
-        <artifactId>java-chassis-dependencies</artifactId>
-        <version>${servicecomb.version}</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.huaweicloud</groupId>
+        <artifactId>spring-cloud-huawei-bom</artifactId>
+        <version>${spring-cloud-huawei.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -25,22 +39,10 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.servicecomb</groupId>
-      <artifactId>solution-basic</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.servicecomb</groupId>
-      <artifactId>registry-service-center</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
+      <groupId>com.huaweicloud</groupId>
+      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
     </dependency>
   </dependencies>
-  
-  <properties>
-    <main.class>org.apache.servicecomb.samples.porter.file.FileMain</main.class>
-  </properties>
   <build>
     <plugins>
       <plugin>
