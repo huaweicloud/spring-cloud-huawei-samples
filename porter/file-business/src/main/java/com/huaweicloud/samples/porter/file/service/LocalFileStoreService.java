@@ -10,6 +10,8 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.huaweicloud.samples.porter.file.api.FileStoreService;
+
 /**
  *  Simple file storage implementation.
  *  Caution: file check and other security constraints not implemented. 

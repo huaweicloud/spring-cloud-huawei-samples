@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-core
+    name: file-business
   cloud:
     servicecomb:
       discovery:
@@ -22,3 +22,5 @@ spring:
         kie:
           customLabel: ${spring.application.name} # 默认值是public
           customLabelValue: default # 默认值是空字符串
+
+
