@@ -9,8 +9,6 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.5.12</spring-boot.version>
-    <spring-cloud.version>2020.0.5</spring-cloud.version>
     <spring-cloud-huawei.version>1.10.2-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
@@ -43,9 +41,6 @@
               <goals>
                 <goal>repackage</goal>
               </goals>
-              <configuration>
-                <mainClass>${main.class}</mainClass>
-              </configuration>
             </execution>
           </executions>
         </plugin>

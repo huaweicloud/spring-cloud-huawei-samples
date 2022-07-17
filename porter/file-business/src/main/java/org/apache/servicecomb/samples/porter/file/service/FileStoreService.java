@@ -7,8 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface FileStoreService {
 
-    public String uploadFile(MultipartFile file);
+    String uploadFile(MultipartFile file);
 
-    public boolean deleteFile(String id);
+    boolean deleteFile(String id);
 
 }
