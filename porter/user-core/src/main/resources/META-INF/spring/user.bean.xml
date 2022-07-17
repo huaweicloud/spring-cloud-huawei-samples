@@ -22,12 +22,12 @@
 
     <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface"
-            value="org.apache.servicecomb.samples.porter.user.dao.UserMapper" />
+            value="com.huaweicloud.samples.porter.user.dao.UserMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
     <bean id="sessionMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface"
-            value="org.apache.servicecomb.samples.porter.user.dao.SessionMapper" />
+            value="com.huaweicloud.samples.porter.user.dao.SessionMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 </beans>

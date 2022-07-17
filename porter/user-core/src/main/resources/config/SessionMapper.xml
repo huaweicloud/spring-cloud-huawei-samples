@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.apache.servicecomb.samples.porter.user.dao.SessionMapper">
-    <resultMap id="sessionInfo" type="org.apache.servicecomb.samples.porter.user.dao.SessionInfoModel">
+<mapper namespace="com.huaweicloud.samples.porter.user.dao.SessionMapper">
+    <resultMap id="sessionInfo" type="com.huaweicloud.samples.porter.user.dao.SessionInfoModel">
         <result column="ID" jdbcType="INTEGER" property="id" />
         <result column="SESSION_ID" jdbcType="VARCHAR" property="sessiondId" />
         <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
@@ -18,7 +18,7 @@
         SESSION_ID, USER_NAME, ROLE_NAME
     </sql>
 
-    <insert id="createSession" parameterType="org.apache.servicecomb.samples.porter.user.dao.SessionInfoModel">
+    <insert id="createSession" parameterType="com.huaweicloud.samples.porter.user.dao.SessionInfoModel">
         insert into T_SESSION (
         <include refid="all_column_auto" />
         )
