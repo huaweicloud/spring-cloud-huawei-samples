@@ -9,17 +9,16 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.5.3</spring-boot.version>
-    <spring-cloud.version>2020.0.3</spring-cloud.version>
-    <spring-cloud-huawei.version>1.8.0-2020.0.x</spring-cloud-huawei.version>
-    <servicecomb.version>2.5.0</servicecomb.version>
+    <spring-boot.version>2.5.12</spring-boot.version>
+    <spring-cloud.version>2020.0.5</spring-cloud.version>
+    <spring-cloud-huawei.version>1.10.2-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
   <modules>
-    <module>user-service</module>
-    <module>file-service</module>
-    <module>spring-cloud-gateway</module>
-    <module>website</module>
+    <module>porter-gateway</module>
+    <module>user-core</module>
+    <module>file-business</module>
+    <module>porter-app</module>
   </modules>
 
   <build>
