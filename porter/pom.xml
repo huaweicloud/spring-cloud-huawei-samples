@@ -18,7 +18,6 @@
   <modules>
     <module>user-service</module>
     <module>file-service</module>
-    <module>servicecomb-edge-service</module>
     <module>spring-cloud-gateway</module>
     <module>website</module>
   </modules>
