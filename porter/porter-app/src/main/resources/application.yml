@@ -1,3 +1,2 @@
-## Spring Boot configurations
 server:
-  port: 9091
+  port: 9092
