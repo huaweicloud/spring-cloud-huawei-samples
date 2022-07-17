@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.apache.servicecomb.samples.porter.user.dao.UserMapper">
-    <resultMap id="userInfo" type="org.apache.servicecomb.samples.porter.user.dao.UserInfo">
+<mapper namespace="com.huaweicloud.samples.porter.user.dao.UserMapper">
+    <resultMap id="userInfo" type="com.huaweicloud.samples.porter.user.dao.UserInfo">
         <result column="ID" jdbcType="INTEGER" property="id" />
         <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
         <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
@@ -12,7 +12,7 @@
         ID, USER_NAME, PASSWORD, ROLE_NAME
     </sql>
 
-    <insert id="createUser" parameterType="org.apache.servicecomb.samples.porter.user.dao.UserInfo">
+    <insert id="createUser" parameterType="com.huaweicloud.samples.porter.user.dao.UserInfo">
         insert into T_USER (
         <include refid="all_column" />
         )
