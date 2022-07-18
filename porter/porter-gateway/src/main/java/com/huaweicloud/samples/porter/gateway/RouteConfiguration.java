@@ -21,6 +21,7 @@ import org.springframework.web.server.ServerWebExchange;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.huaweicloud.common.context.InvocationContextHolder;
 import com.huaweicloud.samples.porter.user.api.SessionInfo;
 
 import reactor.core.publisher.Mono;
@@ -66,7 +67,7 @@ public class RouteConfiguration {
         String sessionInfo = sessionCache.getIfPresent(sessionId);
         if (sessionInfo == null) {
           Mono<SessionInfo> serverSessionInfo = getAndSaveSessionInfo(sessionId);
-          return serverSessionInfo.transform(si -> {
+          return serverSessionInfo.doOnNext(si -> {
             if (si == null) {
               throw new IllegalStateException();
             }
@@ -75,16 +76,14 @@ public class RouteConfiguration {
               throw new IllegalStateException();
             }
             sessionCache.put(sessionId, sessionInfoStr);
-
             Map<String, String> cseContext = new HashMap<>();
             cseContext.put("session-id", sessionId);
-            cseContext.put("session-info", sessionInfo);
+            cseContext.put("session-info", sessionInfoStr);
             ServerHttpRequest nextRequest = exchange.getRequest().mutate()
-                .header("x-cse-context", writeJson(cseContext))
+                .header(InvocationContextHolder.SERIALIZE_KEY, writeJson(cseContext))
                 .build();
-            ServerWebExchange nextExchange = exchange.mutate().request(nextRequest).build();
-            return chain.filter(nextExchange);
-          }).doOnError(e -> {
+            exchange.mutate().request(nextRequest).build();
+          }).then(chain.filter(exchange)).doOnError(e -> {
             ServerHttpResponse response = exchange.getResponse();
             response.setRawStatusCode(403);
           });
@@ -94,7 +93,7 @@ public class RouteConfiguration {
         cseContext.put("session-id", sessionId);
         cseContext.put("session-info", sessionInfo);
         ServerHttpRequest nextRequest = exchange.getRequest().mutate()
-            .header("x-cse-context", writeJson(cseContext))
+            .header(InvocationContextHolder.SERIALIZE_KEY, writeJson(cseContext))
             .build();
         ServerWebExchange nextExchange = exchange.mutate().request(nextRequest).build();
         return chain.filter(nextExchange);
@@ -110,15 +109,6 @@ public class RouteConfiguration {
       return this.builder.build().get()
           .uri("http://user-core/v1/user/session?sessionId=" + sessionId)
           .retrieve().bodyToMono(SessionInfo.class);
-//      if (sessionInfo == null) {
-//        return null;
-//      }
-//      String sessionInfoStr = writeJson(sessionInfo);
-//      if (sessionInfoStr == null) {
-//        return null;
-//      }
-//      sessionCache.put(sessionId, sessionInfoStr);
-//      return sessionInfoStr;
     }
 
     private String writeJson(Object o) {
