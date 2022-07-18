@@ -8,12 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.huaweicloud.samples.porter.file.api.FileService;
 
 @RestController
-@RequestMapping(path = "/")
-public class FileEndpoint implements FileService {
+@RequestMapping(path = "/v1/file")
+public class FileController implements FileService {
   private FileService fileService;
 
   @Autowired
-  public FileEndpoint(FileService fileService) {
+  public FileController(FileService fileService) {
     this.fileService = fileService;
   }
 

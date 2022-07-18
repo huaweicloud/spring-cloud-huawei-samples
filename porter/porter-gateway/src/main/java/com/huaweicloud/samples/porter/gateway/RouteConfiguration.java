@@ -6,11 +6,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.servicecomb.foundation.common.utils.JsonUtils;
-import com.huaweicloud.samples.porter.user.api.SessionInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -22,50 +21,38 @@ import org.springframework.web.server.ServerWebExchange;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.huaweicloud.samples.porter.user.api.SessionInfo;
 
 import reactor.core.publisher.Mono;
 
 @Configuration
 public class RouteConfiguration {
+  private static final Logger LOGGER = LoggerFactory.getLogger(RouteConfiguration.class);
+
   // session expires in 10 minutes, cache for 1 seconds to get rid of concurrent scenarios.
-  private Cache<String, String> sessionCache = CacheBuilder.newBuilder()
+  private final Cache<String, String> sessionCache = CacheBuilder.newBuilder()
       .expireAfterAccess(30, TimeUnit.SECONDS)
       .build();
 
   @Bean
-  public RouteLocator routeLocator(RouteLocatorBuilder builder) {
-    return builder.routes()
-        .route("user-service", r -> r
-            .path("/api/user-service/**")
-            .filters(f -> f.stripPrefix(2))
-            .uri("lb://user-service"))
-        .route("file-service", r -> r
-            .path("/api/file-service/**")
-            .filters(f -> f.stripPrefix(2))
-            .uri("lb://file-service"))
-        .route("porter-website", r -> r
-            .path("/ui/**")
-            .filters(f -> f.stripPrefix(0))
-            .uri("lb://porter-website"))
-        .build();
-  }
-
-  @Bean
-  public GlobalFilter globalFilter() {
-    return new AuthFilter();
+  public GlobalFilter globalFilter(RestTemplate restTemplate) {
+    return new AuthFilter(restTemplate);
   }
 
   class AuthFilter implements GlobalFilter, Ordered {
-    public AuthFilter() {
+    private final RestTemplate restTemplate;
+
+    public AuthFilter(RestTemplate restTemplate) {
+      this.restTemplate = restTemplate;
     }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
       ServerHttpRequest request = exchange.getRequest();
-      if (request.getPath().value().equals("/api/user-service/v1/user/login")
-          || request.getPath().value().equals("/api/user-service/v1/user/session")
-          || request.getPath().value().startsWith("/ui")) {
+      if (request.getPath().value().equals("/v1/user/login")
+          || request.getPath().value().equals("/v1/user/session")
+          || request.getPath().value().startsWith("/porter")) {
         return chain.filter(exchange);
       } else {
         HttpCookie cookie = request.getCookies().getFirst("session-id");
@@ -80,6 +67,11 @@ public class RouteConfiguration {
         if (sessionInfo == null) {
           sessionInfo = getAndSaveSessionInfo(sessionId);
         }
+        if (sessionInfo == null) {
+          ServerHttpResponse response = exchange.getResponse();
+          response.setRawStatusCode(403);
+          return response.setComplete();
+        }
         Map<String, String> cseContext = new HashMap<>();
         cseContext.put("session-id", sessionId);
         cseContext.put("session-info", sessionInfo);
@@ -93,14 +85,19 @@ public class RouteConfiguration {
 
     @Override
     public int getOrder() {
-      return 0;
+      return Ordered.HIGHEST_PRECEDENCE;
     }
 
     private String getAndSaveSessionInfo(String sessionId) {
-      RestTemplate restTemplate = new RestTemplate();
-      SessionInfo sessionInfo = restTemplate
-          .getForObject("http://localhost:8080/v1/user/session?sessionId=" + sessionId, SessionInfo.class);
+      SessionInfo sessionInfo = this.restTemplate
+          .getForObject("http://user-core/v1/user/session?sessionId=" + sessionId, SessionInfo.class);
+      if (sessionInfo == null) {
+        return null;
+      }
       String sessionInfoStr = writeJson(sessionInfo);
+      if (sessionInfoStr == null) {
+        return null;
+      }
       sessionCache.put(sessionId, sessionInfoStr);
       return sessionInfoStr;
     }
@@ -109,7 +106,7 @@ public class RouteConfiguration {
       try {
         return JsonUtils.writeValueAsString(o);
       } catch (Exception ee) {
-        ee.printStackTrace();
+        LOGGER.error("Unexpected error", ee);
       }
       return null;
     }
