@@ -16,7 +16,7 @@ import org.springframework.core.Ordered;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
 
 import com.google.common.cache.Cache;
@@ -35,15 +35,15 @@ public class RouteConfiguration {
       .build();
 
   @Bean
-  public GlobalFilter globalFilter(RestTemplate restTemplate) {
-    return new AuthFilter(restTemplate);
+  public GlobalFilter globalFilter(WebClient.Builder builder) {
+    return new AuthFilter(builder);
   }
 
   class AuthFilter implements GlobalFilter, Ordered {
-    private final RestTemplate restTemplate;
+    private final WebClient.Builder builder;
 
-    public AuthFilter(RestTemplate restTemplate) {
-      this.restTemplate = restTemplate;
+    public AuthFilter(WebClient.Builder builder) {
+      this.builder = builder;
     }
 
     @Override
@@ -65,13 +65,31 @@ public class RouteConfiguration {
 
         String sessionInfo = sessionCache.getIfPresent(sessionId);
         if (sessionInfo == null) {
-          sessionInfo = getAndSaveSessionInfo(sessionId);
+          Mono<SessionInfo> serverSessionInfo = getAndSaveSessionInfo(sessionId);
+          return serverSessionInfo.transform(si -> {
+            if (si == null) {
+              throw new IllegalStateException();
+            }
+            String sessionInfoStr = writeJson(si);
+            if (sessionInfoStr == null) {
+              throw new IllegalStateException();
+            }
+            sessionCache.put(sessionId, sessionInfoStr);
+
+            Map<String, String> cseContext = new HashMap<>();
+            cseContext.put("session-id", sessionId);
+            cseContext.put("session-info", sessionInfo);
+            ServerHttpRequest nextRequest = exchange.getRequest().mutate()
+                .header("x-cse-context", writeJson(cseContext))
+                .build();
+            ServerWebExchange nextExchange = exchange.mutate().request(nextRequest).build();
+            return chain.filter(nextExchange);
+          }).doOnError(e -> {
+            ServerHttpResponse response = exchange.getResponse();
+            response.setRawStatusCode(403);
+          });
         }
-        if (sessionInfo == null) {
-          ServerHttpResponse response = exchange.getResponse();
-          response.setRawStatusCode(403);
-          return response.setComplete();
-        }
+
         Map<String, String> cseContext = new HashMap<>();
         cseContext.put("session-id", sessionId);
         cseContext.put("session-info", sessionInfo);
@@ -88,18 +106,19 @@ public class RouteConfiguration {
       return Ordered.HIGHEST_PRECEDENCE;
     }
 
-    private String getAndSaveSessionInfo(String sessionId) {
-      SessionInfo sessionInfo = this.restTemplate
-          .getForObject("http://user-core/v1/user/session?sessionId=" + sessionId, SessionInfo.class);
-      if (sessionInfo == null) {
-        return null;
-      }
-      String sessionInfoStr = writeJson(sessionInfo);
-      if (sessionInfoStr == null) {
-        return null;
-      }
-      sessionCache.put(sessionId, sessionInfoStr);
-      return sessionInfoStr;
+    private Mono<SessionInfo> getAndSaveSessionInfo(String sessionId) {
+      return this.builder.build().get()
+          .uri("http://user-core/v1/user/session?sessionId=" + sessionId)
+          .retrieve().bodyToMono(SessionInfo.class);
+//      if (sessionInfo == null) {
+//        return null;
+//      }
+//      String sessionInfoStr = writeJson(sessionInfo);
+//      if (sessionInfoStr == null) {
+//        return null;
+//      }
+//      sessionCache.put(sessionId, sessionInfoStr);
+//      return sessionInfoStr;
     }
 
     private String writeJson(Object o) {
