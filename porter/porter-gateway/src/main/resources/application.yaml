@@ -1,2 +1,42 @@
+# 服务监听端口
 server:
   port: 9090
+
+# 服务路由规则配置
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-core
+          uri: lb://user-core
+          predicates:
+            - Path=/v1/user/**
+        - id: file-business
+          uri: lb://file-business
+          predicates:
+            - Path=/v1/file/**
+        - id: porter-app
+          uri: lb://porter-app
+          predicates:
+            - Path=/porter/**
+      # 转发请求超时配置
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 30s
+
+# 服务治理策略
+servicecomb:
+  matchGroup:
+    allOperation: |
+      matches:
+        - apiPath:
+            prefix: "/"
+  instanceIsolation:
+    allOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 20
+      slowCallDurationThreshold: 10000
+      slowCallRateThreshold: 100
+      order: 1
