@@ -3,7 +3,7 @@ function uploadAction() {
 
      $.ajax({
         type: 'POST',
-        url: "/api/file-service/upload",
+        url: "/v1/file/upload",
         data: formData,
         processData:false,
         contentType:false,
@@ -27,7 +27,7 @@ function deleteAction() {
      var fileID = document.getElementById("fileID").value;
      $.ajax({
         type: 'DELETE',
-        url: "/api/file-service/delete?" + $.param({ id: fileID }),
+        url: "/v1/file/delete?" + $.param({ id: fileID }),
         data: {},
         success: function (data) {
             console.log(data);

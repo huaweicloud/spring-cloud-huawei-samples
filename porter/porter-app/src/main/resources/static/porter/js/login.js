@@ -7,12 +7,12 @@ function loginAction() {
 
      $.ajax({
         type: 'POST',
-        url: "/api/user-service/v1/user/login",
+        url: "/v1/user/login",
         data: formData,
         success: function (data) {
             console.log(data);
             setCookie("session-id", data.sessiondId, 1);
-            window.location = "/ui/upload.html";
+            window.location = "/porter/upload.html";
         },
         error: function(data) {
             console.log(data);

@@ -1,4 +1,4 @@
-package com.huaweicloud.samples.porter.user.api;
+package com.huaweicloud.samples.porter.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.huaweicloud.samples.porter.user.api.SessionInfo;
+import com.huaweicloud.samples.porter.user.api.UserService;
+
 @RestController
 @RequestMapping(path = "/v1/user", produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserEndpoint {
+public class UserController {
+  private final UserService userService;
+
   @Autowired
-  private UserService userService;
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
   @PostMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
