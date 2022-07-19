@@ -1,34 +1,12 @@
 # About this Project
-This project provides 5 microservices using Spring Cloud Huawei and ServiceComb Java Chassis.
 
-* website
-  
-  a microservice using spring-boot-web, only has static web pages.
-  
-* user-service
-  
-  a microservice using Spring Cloud and provides a REST interface.  Using Spring Cloud Huawei 
-  to connect to service center.
-
-* file-service
-
-  a microservice using ServiceComb Java Chassis and provides a REST interface. 
-
-* spring-cloud-gateway
-
-  a microservice using Spring Cloud Gateway. Using Spring Cloud Huawei to connect to service center.
-
-* servicecomb-edge-service
-  
-   a microservice using ServiceComb Edge Service.  
-
+see [wiki](https://github.com/huaweicloud/spring-cloud-huawei-samples/wiki/porter)
 
 ## startup
   * [Setup CSE environment](../CSE-ENV.md)
   * Install Mysql, and create an account, e.g. user root and password root.
   * Run create_db_user.sql (In user-service resources/config folder)
-  * Start up user-service, file-service, website and either of spring-cloud-gateway 
-   servicecomb-edge-service.
+  * Start up user-core, file-business, porter-app, porter-gateway and porter-gateway.
    
 ## Try it out
 
@@ -39,37 +17,14 @@ This project provides 5 microservices using Spring Cloud Huawei and ServiceComb 
    
 # 项目说明
 
-这个项目基于 [servicecomb porter](https://docs.servicecomb.io/java-chassis/zh_CN/featured-topics/application-porter/)
-进行了改造， 用于演示 spring cloud huawei 的基本功能，以及与 servicecomb java chassis 的互操作性。 包括下面
-几个子项目：
-
-* website
-  
-  使用 spring-boot-web 开发的一个静态页面服务，只托管静态页面。
-  
-* user-service
-  
-  用户管理服务。 基于 spring cloud 开发框架开发的 REST 服务。 采用 spring cloud huawei 接入服务中心。
-  
-* file-service
-
-  文件管理服务。基于 java chassis 开发框架开发的 REST 服务。 
-  
-* spring-cloud-gateway
-
-  基于 spring cloud gateway 开发的应用网关。 采用 spring cloud huawei 接入服务中心。
-  
-* servicecomb-edge-service
-
-  基于 java chassis 开发的应用网关。 
+查看 [wiki](https://github.com/huaweicloud/spring-cloud-huawei-samples/wiki/porter)
 
 ## 启动
 
   * [准备CSE运行环境](../CSE-ENV_CN.md)
   * 安装mysql数据库，设置用户名密码（假设为root/root）
   * 执行脚本create_db_user.sql （在 user-service 的 resources/config 目录）
-  * 启动 user-service, file-service, website 和 spring-cloud-gateway 
-   （或者servicecomb-edge-service， 二选一）。
+  * 启动 user-core, file-business, porter-app, porter-gateway 和 porter-gateway。
 
 ## 使用
 
