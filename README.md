@@ -1,6 +1,6 @@
 # Spring Cloud Huawei Samples [中文](README_CN.md) 
 
-This project provide samples for Spring Cloud Huawei. Read each sub-project for details about each sample. 
+This project provide samples for Spring Cloud Huawei. Read each sub-project and [wiki](https://github.com/huaweicloud/spring-cloud-huawei-samples/wiki) for details about each sample. 
 
 Directory description:
 
@@ -14,7 +14,7 @@ Directory description:
 
 - porter：This project provides 5 microservices using Spring Cloud Huawei and ServiceComb Java Chassis. 
 
- 
+
 Branches:
 
 * master: for Spring Cloud 2021.0.x
@@ -22,7 +22,7 @@ Branches:
 * Hoxton: for Spring Cloud Hoxton(EOL, not for pruducton use)
 * Greenwich: for Spring Cloud Greenwich(Community maintenance is not recommended for production environment)
 * Finchley: for Spring Cloud Finchley(Community maintenance is not recommended for production environment)
-                                     
+
 
 ## Prerequisites
 

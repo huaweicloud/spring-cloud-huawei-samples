@@ -1,6 +1,6 @@
 # Spring Cloud Huawei 代码示例 [English](README.md) 
 
-这个项目包含Spring Cloud Huawei使用的例子，详细内容请查看每个子项目的说明。
+这个项目包含Spring Cloud Huawei使用的例子，详细内容请查看每个子项目的说明和[wiki](https://github.com/huaweicloud/spring-cloud-huawei-samples/wiki) 。
 
 目录说明：
 
@@ -12,9 +12,8 @@
 
 - migrate：演示dubbo、eureka、hsf、nacos、sofa、tsf项目及其向spring cloud微服务的改造
 
-- porter：5个使用pring Cloud Huawei/ServiceComb Java Chassis 的微服务例子。
+- porter：[应用开发最佳实践: 开发一个数据库应用](https://github.com/huaweicloud/spring-cloud-huawei-samples/wiki/porter) 。
 
-  
 分支信息:
 
 * master: Spring Cloud 2020.0.x
