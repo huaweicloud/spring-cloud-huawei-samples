@@ -1,4 +1,4 @@
-package com.huaweicloud.samples.porter.user.api;
+package com.huaweicloud.samples.porter.user.service;
 
 public interface UserService {
   SessionInfo login(String userName, String password);

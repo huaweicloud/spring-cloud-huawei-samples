@@ -1,4 +1,4 @@
-package com.huaweicloud.samples.porter.user.service;
+package com.huaweicloud.samples.porter.user.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -7,8 +7,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.codec.binary.Base64;
-import com.huaweicloud.samples.porter.user.api.SessionInfo;
-import com.huaweicloud.samples.porter.user.api.UserService;
+
 import com.huaweicloud.samples.porter.user.dao.SessionInfoModel;
 import com.huaweicloud.samples.porter.user.dao.SessionMapper;
 import com.huaweicloud.samples.porter.user.dao.UserInfo;
@@ -19,6 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.huaweicloud.samples.porter.user.service.SessionInfo;
+import com.huaweicloud.samples.porter.user.service.UserService;
 import com.netflix.config.DynamicPropertyFactory;
 
 @Service

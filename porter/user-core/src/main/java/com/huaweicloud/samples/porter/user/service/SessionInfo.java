@@ -1,4 +1,4 @@
-package com.huaweicloud.samples.porter.user.api;
+package com.huaweicloud.samples.porter.user.service;
 
 public class SessionInfo {
   private String sessiondId;

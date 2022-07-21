@@ -1,4 +1,4 @@
-package com.huaweicloud.samples.porter.file.service;
+package com.huaweicloud.samples.porter.file.service.impl;
 
 public class SessionInfo {
     private int id;

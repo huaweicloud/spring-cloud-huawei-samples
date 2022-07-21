@@ -1,4 +1,4 @@
-package com.huaweicloud.samples.porter.file.api;
+package com.huaweicloud.samples.porter.file.service;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;

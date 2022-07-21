@@ -1,7 +1,7 @@
-package com.huaweicloud.samples.porter.file.service;
+package com.huaweicloud.samples.porter.file.service.impl;
 
-import com.huaweicloud.samples.porter.file.api.FileService;
-import com.huaweicloud.samples.porter.file.api.FileStoreService;
+import com.huaweicloud.samples.porter.file.service.FileService;
+import com.huaweicloud.samples.porter.file.service.FileStoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.huaweicloud.samples.porter.file.service;
+package com.huaweicloud.samples.porter.file.service.impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,7 +10,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.huaweicloud.samples.porter.file.api.FileStoreService;
+import com.huaweicloud.samples.porter.file.service.FileStoreService;
 
 /**
  *  Simple file storage implementation.

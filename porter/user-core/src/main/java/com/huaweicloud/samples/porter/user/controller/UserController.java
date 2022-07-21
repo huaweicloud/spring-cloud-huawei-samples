@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.huaweicloud.samples.porter.user.api.SessionInfo;
-import com.huaweicloud.samples.porter.user.api.UserService;
+import com.huaweicloud.samples.porter.user.service.SessionInfo;
+import com.huaweicloud.samples.porter.user.service.UserService;
 
 @RestController
 @RequestMapping(path = "/v1/user", produces = MediaType.APPLICATION_JSON_VALUE)

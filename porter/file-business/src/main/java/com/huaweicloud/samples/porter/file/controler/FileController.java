@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.huaweicloud.common.context.InvocationContextHolder;
-import com.huaweicloud.samples.porter.file.api.FileService;
-import com.huaweicloud.samples.porter.file.service.SessionInfo;
+import com.huaweicloud.samples.porter.file.service.FileService;
+import com.huaweicloud.samples.porter.file.service.impl.SessionInfo;
 
 @RestController
 @RequestMapping(path = "/v1/file")
