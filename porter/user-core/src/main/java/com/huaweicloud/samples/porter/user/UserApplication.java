@@ -6,10 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
+@ImportResource("classpath:META-INF/spring/user.bean.xml")
 public class UserApplication {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserApplication.class);
 
