@@ -1,52 +1,18 @@
 # 服务监听端口
 server:
-  port: 9090
-
+  port: 9092
 # 服务路由规则配置， 启用了“服务端熔断"、”服务端隔离仓"和 “服务端限流" 功能。 也启用了”客户端容错（重试）“功能。
 spring:
   cloud:
-    gateway:
-      routes:
-        - id: user-core
-          uri: lb://user-core
-          predicates:
-            - Path=/v1/user/**
-          filters:
-            - name: governance
-            - name: Retry
-              args:
-                retries: 2
-                series: SERVER_ERROR
-        - id: file-business
-          uri: lb://file-business
-          predicates:
-            - Path=/v1/file/**
-          filters:
-            - name: governance
-            - name: Retry
-              args:
-                retries: 2
-                series: SERVER_ERROR
-        - id: porter-app
-          uri: lb://porter-app
-          predicates:
-            - Path=/porter/**
-          filters:
-            - name: governance
-            - name: Retry
-              args:
-                retries: 2
-                series: SERVER_ERROR
+    servicecomb:
+      # 请求调用追踪日志。 开发阶段方便调试问题，设置为true，可以动态修改
+      context:
+        enableTraceInfo: true
 
-      # 快速失败：转发请求超时配置
+# 快速失败：转发请求超时配置， RestTemplate
       httpclient:
         connect-timeout: 1000
         response-timeout: 10s
-
-    servicecomb:
-# 请求调用追踪日志。 开发阶段方便调试问题，设置为true，可以动态修改
-      context:
-        enableTraceInfo: true
 
 # 上报治理状态到CSE仪表盘
       dashboard:
@@ -58,6 +24,14 @@ spring:
 # 优雅停机等待时间
       discovery:
         waitTimeForShutDownInMillis: 30000
+
+# 快速失败：转发请求超时配置 Feign
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 10000
 
 # 服务治理策略配置
 ## 定义业务：所有接口

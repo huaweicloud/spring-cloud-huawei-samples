@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-core
+    name: porter-app
   cloud:
     servicecomb:
       discovery:
@@ -17,8 +17,10 @@ spring:
       config:
         # 配置中心地址，本示例使用ServiceStage环境变量。建议保留这种配置方式，
         # 部署的时候，不用手工修改地址。
-        serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
-        serverType: kie
-        kie:
-          customLabel: ${spring.application.name} # 默认值是public
-          customLabelValue: default # 默认值是空字符串
+        serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30103}
+        serverType: config-center
+        # 使用yaml文件简化配置。建议datasource.yaml使用全局配置，application.yaml使用微服务配置。
+        fileSource: datasource.yaml,application.yaml
+      dashboard:
+        enabled: true
+        address: ${PAAS_CSE_DS_ENDPOINT:http://127.0.0.1:30109}

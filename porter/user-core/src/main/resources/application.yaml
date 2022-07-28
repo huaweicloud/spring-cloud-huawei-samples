@@ -1,2 +1,59 @@
+# 服务监听端口
 server:
   port: 9093
+
+# 服务路由规则配置， 启用了“服务端熔断"、”服务端隔离仓"和 “服务端限流" 功能。 也启用了”客户端容错（重试）“功能。
+spring:
+  cloud:
+    servicecomb:
+      # 请求调用追踪日志。 开发阶段方便调试问题，设置为true，可以动态修改
+      context:
+        enableTraceInfo: true
+
+# 快速失败：转发请求超时配置， RestTemplate
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 10s
+
+# 上报治理状态到CSE仪表盘
+      dashboard:
+        ## 使用基于请求的接口计数
+        invocationProviderEnabled: false
+        ## 使用基于熔断器的计数
+        governanceProviderEnabled: true
+
+# 优雅停机等待时间
+      discovery:
+        waitTimeForShutDownInMillis: 30000
+
+# 快速失败：转发请求超时配置 Feign
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 10000
+
+# 服务治理策略配置
+## 定义业务：所有接口
+servicecomb:
+  matchGroup:
+    allOperation: |
+      matches:
+        - apiPath:
+            prefix: "/"
+
+## 快速失败：实例隔离
+  instanceIsolation:
+    allOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 20
+      slowCallDurationThreshold: 10000
+      slowCallRateThreshold: 100
+      order: 1
+## 快速失败：限流
+  rateLimiting:
+    allOperation: |
+      rate: 1000
