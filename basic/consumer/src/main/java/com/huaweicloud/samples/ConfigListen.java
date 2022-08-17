@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConfigListen {
 
-    @Value("${name}")
+    @Value("${name:}")
     String name;
 
     public ConfigListen() {
