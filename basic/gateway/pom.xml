@@ -14,6 +14,14 @@
   <dependencies>
     <dependency>
       <groupId>com.huaweicloud</groupId>
+      <artifactId>spring-cloud-starter-huawei-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.huaweicloud</groupId>
       <artifactId>spring-cloud-starter-huawei-service-engine-gateway</artifactId>
     </dependency>
   </dependencies>
