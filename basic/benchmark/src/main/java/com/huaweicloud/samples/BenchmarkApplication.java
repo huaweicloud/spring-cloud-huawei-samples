@@ -27,33 +27,38 @@ public class BenchmarkApplication {
 
   private static AtomicLong error = new AtomicLong(0);
 
+  private static AtomicLong totalTime = new AtomicLong(0);
+
   public static void main(String[] args) throws Exception {
     SpringApplication.run(BenchmarkApplication.class, args);
 
+    int threadCount = 20;
+    int times = 1000;
+
     System.out.println("==================templateZ0========================");
-    runTest(10, 1000, "1234567890", "/benchmark/template/delay/z0",
+    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z0",
         BenchmarkApplication::runTest);
     System.out.println("==================templateZ1========================");
-    runTest(10, 1000, "1234567890", "/benchmark/template/delay/z1",
+    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z1",
         BenchmarkApplication::runTest);
     System.out.println("==================templateZ10========================");
-    runTest(10, 1000, "1234567890", "/benchmark/template/delay/z10",
+    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z10",
         BenchmarkApplication::runTest);
     System.out.println("==================templateZ100========================");
-    runTest(10, 1000, "1234567890", "/benchmark/template/delay/z100",
+    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z100",
         BenchmarkApplication::runTest);
 
     System.out.println("==================feignZ0========================");
-    runTest(10, 1000, "1234567890", "/benchmark/feign/delay/z0",
+    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z0",
         BenchmarkApplication::runTest);
     System.out.println("==================feignZ1========================");
-    runTest(10, 1000, "1234567890", "/benchmark/feign/delay/z1",
+    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z1",
         BenchmarkApplication::runTest);
     System.out.println("==================feignZ10========================");
-    runTest(10, 1000, "1234567890", "/benchmark/feign/delay/z10",
+    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z10",
         BenchmarkApplication::runTest);
     System.out.println("==================feignZ100========================");
-    runTest(10, 1000, "1234567890", "/benchmark/feign/delay/z100",
+    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z100",
         BenchmarkApplication::runTest);
   }
 
@@ -80,6 +85,7 @@ public class BenchmarkApplication {
     success.set(0);
     error.set(0);
     timeout.set(0);
+    totalTime.set(0);
 
     // run
     CountDownLatch latch = new CountDownLatch(threadCount * count);
@@ -87,7 +93,9 @@ public class BenchmarkApplication {
     for (int i = 0; i < threadCount; i++) {
       executor.submit(() -> {
         for (int j = 0; j < count; j++) {
+          long b = System.currentTimeMillis();
           function.accept(message, url);
+          totalTime.addAndGet(System.currentTimeMillis() - b);
           latch.countDown();
         }
       });
@@ -99,6 +107,7 @@ public class BenchmarkApplication {
     System.out.println(success.get());
     System.out.println(timeout.get());
     System.out.println(error.get());
+    System.out.println(totalTime.get() / success.get());
 
     executor.shutdownNow();
   }
