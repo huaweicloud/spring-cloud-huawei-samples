@@ -1,4 +1,4 @@
-package com.huaweicloud.samples;
+package com.huaweicloud.samples.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

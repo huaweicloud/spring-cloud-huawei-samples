@@ -1,4 +1,4 @@
-package com.huaweicloud.samples;
+package com.huaweicloud.samples.provider;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -5,6 +5,13 @@ servicecomb:
       matches:
         - apiPath:
             prefix: "/"
+  rateLimiting:
+    ## 限流器每10毫秒允许通过100个请求，如果一个请求超过1000毫秒没有获取到
+    ## 许可，将被拒绝
+    allOperation: |
+      rate: 10
+      limitRefreshPeriod: 1
+      timeoutDuration: 1000
   retry:
     ## 重试器最多重试2次，并且尽可能选择不同于失败的实例进行重试。
     allOperation: |
@@ -15,11 +22,11 @@ servicecomb:
     ## 开启时间为5000毫秒，然后会放通10个请求。
     allOperation: |
       minimumNumberOfCalls: 10
-      slidingWindowSize: 20
+      slidingWindowSize: 100
       slidingWindowType: COUNT_BASED
       failureRateThreshold: 50
-      slowCallRateThreshold: 100
-      slowCallDurationThreshold: 1000
+      slowCallRateThreshold: 50
+      slowCallDurationThreshold: 5000
       waitDurationInOpenState: 5000
       permittedNumberOfCallsInHalfOpenState: 10
   instanceBulkhead:

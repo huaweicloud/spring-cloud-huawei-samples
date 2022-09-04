@@ -1,4 +1,4 @@
-package com.huaweicloud.samples;
+package com.huaweicloud.samples.consumer;
 
 import com.google.common.eventbus.Subscribe;
 import com.huaweicloud.common.event.EventManager;
