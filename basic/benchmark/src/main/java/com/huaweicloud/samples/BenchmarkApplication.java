@@ -1,5 +1,6 @@
 package com.huaweicloud.samples;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,6 +13,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.web.client.RestTemplate;
+
+import io.micrometer.core.instrument.DistributionSummary;
+import io.micrometer.core.instrument.Meter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.distribution.CountAtBucket;
+import io.micrometer.core.instrument.distribution.HistogramSnapshot;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -29,11 +37,28 @@ public class BenchmarkApplication {
 
   private static AtomicLong totalTime = new AtomicLong(0);
 
+  private static MeterRegistry registry = null;
+
+  private static DistributionSummary summary = null;
+
+  public static void registerMetrics() {
+    if (registry != null) {
+      registry.close();
+    }
+    registry = new SimpleMeterRegistry();
+    summary = DistributionSummary
+        .builder("response.time")
+        .description("response.time")
+        .tags("response.time", "test") // optional
+        .serviceLevelObjectives(10D, 20D, 50D, 100D, 200D, 500D, 1000D)
+        .register(registry);
+  }
+
   public static void main(String[] args) throws Exception {
     SpringApplication.run(BenchmarkApplication.class, args);
 
-    int threadCount = 20;
-    int times = 1000;
+    int threadCount = 10;
+    int times = 100;
 
     System.out.println("==================templateZ0========================");
     runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z0",
@@ -86,6 +111,7 @@ public class BenchmarkApplication {
     error.set(0);
     timeout.set(0);
     totalTime.set(0);
+    registerMetrics();
 
     // run
     CountDownLatch latch = new CountDownLatch(threadCount * count);
@@ -96,6 +122,7 @@ public class BenchmarkApplication {
           long b = System.currentTimeMillis();
           function.accept(message, url);
           totalTime.addAndGet(System.currentTimeMillis() - b);
+          summary.record(System.currentTimeMillis() - b);
           latch.countDown();
         }
       });
@@ -108,6 +135,24 @@ public class BenchmarkApplication {
     System.out.println(timeout.get());
     System.out.println(error.get());
     System.out.println(totalTime.get() / success.get());
+
+    List<Meter> meters = registry.getMeters();
+
+    for (Meter meter : meters) {
+      if ("response.time".equals(meter.getId().getName())) {
+        DistributionSummary distributionSummary = (DistributionSummary) meter;
+        HistogramSnapshot histogramSnapshot = distributionSummary.takeSnapshot();
+        CountAtBucket[] countAtBuckets = histogramSnapshot.histogramCounts();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < countAtBuckets.length; i++) {
+          CountAtBucket countAtBucket = countAtBuckets[i];
+          sb.append("|(" + Double.valueOf(countAtBucket.bucket()).intValue()
+              + "," + (i == 0 ? Double.valueOf(countAtBucket.count()).intValue()
+              : Double.valueOf(countAtBucket.count() - countAtBuckets[i - 1].count()).intValue() + ")|"));
+        }
+        System.out.println(sb);
+      }
+    }
 
     executor.shutdownNow();
   }
