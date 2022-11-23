@@ -10,7 +10,7 @@
   <properties>
     <spring-boot.version>2.6.7</spring-boot.version>
     <spring-cloud.version>2021.0.3</spring-cloud.version>
-    <spring-cloud-huawei.version>1.10.5-2021.0.x</spring-cloud-huawei.version>
+    <spring-cloud-huawei.version>1.10.7-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
   <dependencyManagement>

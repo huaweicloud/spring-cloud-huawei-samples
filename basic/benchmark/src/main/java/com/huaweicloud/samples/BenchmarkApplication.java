@@ -1,5 +1,6 @@
 package com.huaweicloud.samples;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -50,6 +51,7 @@ public class BenchmarkApplication {
         .builder("response.time")
         .description("response.time")
         .tags("response.time", "test") // optional
+        .distributionStatisticExpiry(Duration.ofMinutes(10))
         .serviceLevelObjectives(10D, 20D, 50D, 100D, 200D, 500D, 1000D)
         .register(registry);
   }
@@ -57,34 +59,34 @@ public class BenchmarkApplication {
   public static void main(String[] args) throws Exception {
     SpringApplication.run(BenchmarkApplication.class, args);
 
-    int threadCount = 10;
-    int times = 100;
+    int threadCount = 20;
+    int times = 1000;
 
     System.out.println("==================templateZ0========================");
     runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z0",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
     System.out.println("==================templateZ1========================");
     runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z1",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
     System.out.println("==================templateZ10========================");
     runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z10",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
     System.out.println("==================templateZ100========================");
     runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z100",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
 
     System.out.println("==================feignZ0========================");
     runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z0",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
     System.out.println("==================feignZ1========================");
     runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z1",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
     System.out.println("==================feignZ10========================");
     runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z10",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
     System.out.println("==================feignZ100========================");
     runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z100",
-        BenchmarkApplication::runTest);
+        BenchmarkApplication::callMethod);
   }
 
   private static void runTest(int threadCount, int count, String message, String url,
@@ -148,7 +150,7 @@ public class BenchmarkApplication {
           CountAtBucket countAtBucket = countAtBuckets[i];
           sb.append("|(" + Double.valueOf(countAtBucket.bucket()).intValue()
               + "," + (i == 0 ? Double.valueOf(countAtBucket.count()).intValue()
-              : Double.valueOf(countAtBucket.count() - countAtBuckets[i - 1].count()).intValue() + ")|"));
+              : Double.valueOf(countAtBucket.count() - countAtBuckets[i - 1].count()).intValue()) + ")|");
         }
         System.out.println(sb);
       }
@@ -157,13 +159,18 @@ public class BenchmarkApplication {
     executor.shutdownNow();
   }
 
-  private static void runTest(String message, String url) {
+  private static void callMethod(String message, String url) {
     try {
+      long begin = System.currentTimeMillis();
       String result = template.postForObject(URL + url, message, String.class);
       if (!message.equals(result)) {
         error.incrementAndGet();
       } else {
-        success.incrementAndGet();
+        if (System.currentTimeMillis() - begin >= 1000) {
+          timeout.incrementAndGet();
+        } else {
+          success.incrementAndGet();
+        }
       }
     } catch (Throwable e) {
       error.incrementAndGet();
