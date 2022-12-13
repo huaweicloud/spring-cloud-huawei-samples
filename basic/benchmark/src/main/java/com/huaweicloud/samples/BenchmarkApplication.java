@@ -1,179 +1,64 @@
 package com.huaweicloud.samples;
 
-import java.time.Duration;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.BiConsumer;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.web.client.RestTemplate;
-
-import io.micrometer.core.instrument.DistributionSummary;
-import io.micrometer.core.instrument.Meter;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.distribution.CountAtBucket;
-import io.micrometer.core.instrument.distribution.HistogramSnapshot;
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
+@Component
 public class BenchmarkApplication {
-  private static String URL = "http://127.0.0.1:9090";
-
-  private static RestTemplate template = new RestTemplate();
-
-  private static AtomicLong success = new AtomicLong(0);
-
-  private static AtomicLong timeout = new AtomicLong(0);
-
-  private static AtomicLong error = new AtomicLong(0);
-
-  private static AtomicLong totalTime = new AtomicLong(0);
-
-  private static MeterRegistry registry = null;
-
-  private static DistributionSummary summary = null;
-
-  public static void registerMetrics() {
-    if (registry != null) {
-      registry.close();
-    }
-    registry = new SimpleMeterRegistry();
-    summary = DistributionSummary
-        .builder("response.time")
-        .description("response.time")
-        .tags("response.time", "test") // optional
-        .distributionStatisticExpiry(Duration.ofMinutes(10))
-        .serviceLevelObjectives(10D, 20D, 50D, 100D, 200D, 500D, 1000D)
-        .register(registry);
-  }
-
   public static void main(String[] args) throws Exception {
-    SpringApplication.run(BenchmarkApplication.class, args);
+    ApplicationContext applicationContext = SpringApplication.run(BenchmarkApplication.class, args);
+    TestCase test = applicationContext.getBean(TestCase.class);
+    Configuration configuration = test.getConfiguration();
+    if (configuration.getTestCaseId() == 0) {
+      System.out.println("==================templateZ0========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/template/delay/z0");
+      test.init();
+      test.run();
 
-    int threadCount = 20;
-    int times = 1000;
+      System.out.println("==================templateZ1========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/template/delay/z1");
+      test.init();
+      test.run();
 
-    System.out.println("==================templateZ0========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z0",
-        BenchmarkApplication::callMethod);
-    System.out.println("==================templateZ1========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z1",
-        BenchmarkApplication::callMethod);
-    System.out.println("==================templateZ10========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z10",
-        BenchmarkApplication::callMethod);
-    System.out.println("==================templateZ100========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/template/delay/z100",
-        BenchmarkApplication::callMethod);
+      System.out.println("==================templateZ10========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/template/delay/z10");
+      test.init();
+      test.run();
 
-    System.out.println("==================feignZ0========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z0",
-        BenchmarkApplication::callMethod);
-    System.out.println("==================feignZ1========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z1",
-        BenchmarkApplication::callMethod);
-    System.out.println("==================feignZ10========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z10",
-        BenchmarkApplication::callMethod);
-    System.out.println("==================feignZ100========================");
-    runTest(threadCount, times, "1234567890", "/benchmark/feign/delay/z100",
-        BenchmarkApplication::callMethod);
-  }
+      System.out.println("==================templateZ100========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/template/delay/z100");
+      test.init();
+      test.run();
 
-  private static void runTest(int threadCount, int count, String message, String url,
-      BiConsumer<String, String> function) throws Exception {
-    // initialize
-    ExecutorService executor = Executors.newFixedThreadPool(threadCount, new ThreadFactory() {
-      AtomicLong count = new AtomicLong(0);
+      System.out.println("==================feignZ0========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/feign/delay/z0");
+      test.init();
+      test.run();
 
-      @Override
-      public Thread newThread(Runnable r) {
-        return new Thread(r, "test-thread" + count.getAndIncrement());
-      }
-    });
-    CountDownLatch initLatch = new CountDownLatch(threadCount);
-    for (int i = 0; i < threadCount; i++) {
-      executor.submit(() -> {
-        function.accept(message, url);
-        initLatch.countDown();
-      });
-    }
-    initLatch.await();
+      System.out.println("==================feignZ1========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/feign/delay/z1");
+      test.init();
+      test.run();
 
-    success.set(0);
-    error.set(0);
-    timeout.set(0);
-    totalTime.set(0);
-    registerMetrics();
+      System.out.println("==================feignZ10========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/feign/delay/z10");
+      test.init();
+      test.run();
 
-    // run
-    CountDownLatch latch = new CountDownLatch(threadCount * count);
-    long begin = System.currentTimeMillis();
-    for (int i = 0; i < threadCount; i++) {
-      executor.submit(() -> {
-        for (int j = 0; j < count; j++) {
-          long b = System.currentTimeMillis();
-          function.accept(message, url);
-          totalTime.addAndGet(System.currentTimeMillis() - b);
-          summary.record(System.currentTimeMillis() - b);
-          latch.countDown();
-        }
-      });
-    }
-
-    latch.await();
-
-    System.out.println(System.currentTimeMillis() - begin);
-    System.out.println(success.get());
-    System.out.println(timeout.get());
-    System.out.println(error.get());
-    System.out.println(totalTime.get() / success.get());
-
-    List<Meter> meters = registry.getMeters();
-
-    for (Meter meter : meters) {
-      if ("response.time".equals(meter.getId().getName())) {
-        DistributionSummary distributionSummary = (DistributionSummary) meter;
-        HistogramSnapshot histogramSnapshot = distributionSummary.takeSnapshot();
-        CountAtBucket[] countAtBuckets = histogramSnapshot.histogramCounts();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < countAtBuckets.length; i++) {
-          CountAtBucket countAtBucket = countAtBuckets[i];
-          sb.append("|(" + Double.valueOf(countAtBucket.bucket()).intValue()
-              + "," + (i == 0 ? Double.valueOf(countAtBucket.count()).intValue()
-              : Double.valueOf(countAtBucket.count() - countAtBuckets[i - 1].count()).intValue()) + ")|");
-        }
-        System.out.println(sb);
-      }
-    }
-
-    executor.shutdownNow();
-  }
-
-  private static void callMethod(String message, String url) {
-    try {
-      long begin = System.currentTimeMillis();
-      String result = template.postForObject(URL + url, message, String.class);
-      if (!message.equals(result)) {
-        error.incrementAndGet();
-      } else {
-        if (System.currentTimeMillis() - begin >= 1000) {
-          timeout.incrementAndGet();
-        } else {
-          success.incrementAndGet();
-        }
-      }
-    } catch (Throwable e) {
-      error.incrementAndGet();
+      System.out.println("==================feignZ100========================");
+      configuration.setUrl("http://127.0.0.1:9090/benchmark/feign/delay/z100");
+      test.init();
+      test.run();
+    } else {
+      test.init();
+      test.run();
     }
   }
 }

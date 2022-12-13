@@ -1,0 +1,7 @@
+test:
+  runCount: 1000
+  threadCount: 1
+  url: http://127.0.0.1:9090/benchmark/feign/delay/z0
+  usePooledClient: false
+  data: ABCDEFGHIJ
+  testCaseId: 0
