@@ -21,6 +21,7 @@ spring:
         environment: production
       # 注册发现相关配置
       discovery:
+        enabled: false
         # 注册中心地址，本示例使用ServiceStage环境变量。建议保留这种配置方式，
         # 部署的时候，不用手工修改地址。
         address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
@@ -31,6 +32,7 @@ spring:
         # 优雅停机设置。优雅停机后，先从注册中心注销自己。这个时间表示注销自己后等待的时间，这个时间后才退出。
         waitTimeForShutDownInMillis: 15000
       config:
+        enabled: false
         # 配置中心地址，本示例使用ServiceStage环境变量。建议保留这种配置方式，
         # 部署的时候，不用手工修改地址。
         serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
