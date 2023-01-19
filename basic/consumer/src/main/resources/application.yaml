@@ -33,7 +33,7 @@ servicecomb:
     ## 隔离仓限制正在处理的请求数为20个，新来的请求等待1000毫秒没有获取到
     ## 许可，将被拒绝。
     allOperation: |
-      maxConcurrentCalls: 20
+      maxConcurrentCalls: 50
       maxWaitDuration: 1000
 
 # 配合容器readiness检查 /actuator/health/readiness，服务注册成功才会返回true。

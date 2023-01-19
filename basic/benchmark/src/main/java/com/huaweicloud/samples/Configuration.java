@@ -16,6 +16,8 @@ public class Configuration {
 
   private String data = "ABCDEFGHIJ";
 
+  private String auth = null;
+
   private int testCaseId = 0;
 
   public int getRunCount() {
@@ -64,5 +66,13 @@ public class Configuration {
 
   public void setTestCaseId(int testCaseId) {
     this.testCaseId = testCaseId;
+  }
+
+  public String getAuth() {
+    return auth;
+  }
+
+  public void setAuth(String auth) {
+    this.auth = auth;
   }
 }

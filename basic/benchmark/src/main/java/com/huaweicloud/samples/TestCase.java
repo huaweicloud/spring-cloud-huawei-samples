@@ -1,5 +1,6 @@
 package com.huaweicloud.samples;
 
+import java.net.URI;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -10,7 +11,11 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiConsumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import io.micrometer.core.instrument.DistributionSummary;
@@ -27,6 +32,8 @@ public class TestCase {
   private RestTemplate restTemplate = new RestTemplate();
 
   private RestTemplate pooledRestTemplate;
+
+  private AtomicLong index = new AtomicLong(0);
 
   private AtomicLong success = new AtomicLong(0);
 
@@ -69,14 +76,17 @@ public class TestCase {
   }
 
   protected void run() throws Exception {
+    System.out.println("Configurations: threadCount=" + configuration.getThreadCount()
+        + ", runCount=" + configuration.getRunCount());
     runTest(configuration.getThreadCount(), configuration.getRunCount(),
         configuration.getData(), configuration.getUrl(),
         (m, u) -> callMethod(m, u));
   }
 
-  private void runTest(int threadCount, int count, String message, String url,
+  private void runTest(int threadCount, int runCount, String message, String url,
       BiConsumer<String, String> function) throws Exception {
     // initialize
+    System.out.println("Preparing run =======================================");
     ExecutorService executor = Executors.newFixedThreadPool(threadCount, new ThreadFactory() {
       AtomicLong count = new AtomicLong(0);
 
@@ -101,11 +111,13 @@ public class TestCase {
     registerMetrics();
 
     // run
-    CountDownLatch latch = new CountDownLatch(threadCount * count);
+    System.out.println("Starting run =======================================");
+
+    CountDownLatch latch = new CountDownLatch(threadCount * runCount);
     long begin = System.currentTimeMillis();
     for (int i = 0; i < threadCount; i++) {
       executor.submit(() -> {
-        for (int j = 0; j < count; j++) {
+        for (int j = 0; j < runCount; j++) {
           long b = System.currentTimeMillis();
           function.accept(message, url);
           totalTime.addAndGet(System.currentTimeMillis() - b);
@@ -121,7 +133,7 @@ public class TestCase {
     System.out.println("Success count:" + success.get());
     System.out.println("Timeout count:" + timeout.get());
     System.out.println("Error count:" + error.get());
-    System.out.println("Success average Latency:" + totalTime.get() / success.get());
+    System.out.println("Success average Latency:" + totalTime.get() / (success.get() + timeout.get() + error.get()));
 
     List<Meter> meters = registry.getMeters();
 
@@ -147,11 +159,19 @@ public class TestCase {
   private void callMethod(String message, String url) {
     try {
       long begin = System.currentTimeMillis();
+
+      MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+      headers.add("Authorization", configuration.getAuth());
+      headers.add("Content-Type", "application/json");
+      headers.add("trace-id", "xxxxxx" + index.getAndIncrement());
+      RequestEntity<String> requestEntity = new RequestEntity<>(message, headers, HttpMethod.POST,
+          new URI(url));
+
       String result;
       if (configuration.isUsePooledClient()) {
-        result = pooledRestTemplate.postForObject(url, message, String.class);
+        result = pooledRestTemplate.exchange(requestEntity, String.class).getBody();
       } else {
-        result = restTemplate.postForObject(url, message, String.class);
+        result = restTemplate.exchange(requestEntity, String.class).getBody();
       }
       if (!message.equals(result)) {
         error.incrementAndGet();
