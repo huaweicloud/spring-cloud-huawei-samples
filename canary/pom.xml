@@ -11,13 +11,14 @@
   <properties>
     <spring-boot.version>2.6.7</spring-boot.version>
     <spring-cloud.version>2021.0.3</spring-cloud.version>
-    <spring-cloud-huawei.version>1.10.0-2021.0.x</spring-cloud-huawei.version>
+    <spring-cloud-huawei.version>1.10.8-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
   <modules>
     <module>canary-consumer</module>
     <module>canary-provider</module>
     <module>canary-provider-beta</module>
+    <module>canary-gateway</module>
   </modules>
 
   <dependencyManagement>

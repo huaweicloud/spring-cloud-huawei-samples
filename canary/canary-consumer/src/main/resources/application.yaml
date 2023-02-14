@@ -1,14 +1,2 @@
 server:
-  port: 8091
-
-servicecomb:
-  routeRule:
-    canary-provider: |
-      - precedence: 1 #优先级
-        route: #路由规则
-          - weight: 80
-            tags:
-              version: 0.0.1
-          - weight: 20
-            tags:
-              version: 0.0.2
+  port: 8093
