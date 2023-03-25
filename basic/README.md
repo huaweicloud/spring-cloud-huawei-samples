@@ -40,4 +40,4 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
 * Testing
 
-Open in browser： http://localhost:9090/sayHello?name=World or http://localhost:9090/sayHelloFeign?name=World
+Open in browser： http://localhost:9090/consumer/sayHello?name=World or http://localhost:9090/consumer/sayHelloFeign?name=World

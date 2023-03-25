@@ -7,10 +7,14 @@ spring:
           uri: lb://basic-consumer
           predicates:
             - Path=/consumer/**,/benchmark/**
+          filters:
+            - StripPrefix=1
         - id: provider
           uri: lb://basic-provider
           predicates:
             - Path=/provider/**
+          filters:
+            - StripPrefix=1
 
       httpclient:
         pool:
