@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/benchmark/template")
+@RequestMapping("/template")
 public class BenchmarkTemplateController {
   private final RestTemplate restTemplate;
 
