@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/benchmark/feign")
+@RequestMapping("/feign")
 public class BenchmarkFeignController {
   private final BenchmarkFeign benchmarkFeign;
 

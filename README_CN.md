@@ -16,8 +16,9 @@
 
 分支信息:
 
-* master: Spring Cloud 2020.0.x
-* 2020.0.x: Spring Cloud 2020.0.x
+* master: Spring Cloud 2022.0.x, 依赖 JDK17
+* 2021.0.x: Spring Cloud 2021.0.x, 依赖 JDK8
+* 2020.0.x: Spring Cloud 2020.0.x, 依赖 JDK8
 * Hoxton: Spring Cloud Hoxton(EOL，不用于生产环境使用)
 * Greenwich: Spring Cloud Greenwich(社区停止维护，不建议生产环境使用)
 * Finchley: Spring Cloud Finchley（社区停止维护，不建议生产环境使用）
