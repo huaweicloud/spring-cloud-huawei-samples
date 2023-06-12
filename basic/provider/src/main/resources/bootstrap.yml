@@ -1,10 +1,19 @@
 server:
   port: 9094
 
+# Profile：注册中心类型：cse/nacos
 spring:
+  profiles:
+    active: cse
+
   application:
     # 微服务名称。 微服务名称定义好以后，后续不能变更。
     name: basic-provider
+
+# CSE 注册配置中心
+---
+spring:
+  profiles: cse
   cloud:
     servicecomb:
       # 微服务的基本信息
@@ -13,7 +22,7 @@ spring:
         name: ${spring.application.name}
         # 微服务版本号，本示例使用ServiceStage环境变量。建议保留这种配置方式，
         # 部署的时候，不用手工修改版本号，防止契约注册失败。
-        version: ${CAS_INSTANCE_VERSION:0.0.1}
+        version: ${CAS_INSTANCE_VERSION:0.0.2}
         # 应用名称。默认情况下只有应用名称相同的微服务之间才可以相互发现。
         application: ${CAS_APPLICATION_NAME:basic-application}
         # 环境名称。只有环境名称相同的微服务之间才可以相互发现。
@@ -41,3 +50,22 @@ spring:
           customLabelValue: ${INSTANCE_TAG:default}
         # 自定义配置，使用文本的key/value配置项作为yaml格式配置
         fileSource: governance.yaml,application.yaml
+
+# Nacos 注册配置中心
+---
+spring:
+  profiles: nacos
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: http://127.0.0.1:8848
+        service: ${spring.application.name}
+      config:
+        enabled: true
+        server-addr: http://127.0.0.1:8848
+        file-extension: yaml
+        shared-configs[0]:
+          data-id: provider.yaml
+          group: DEFAULT_GROUP
+          refresh: true

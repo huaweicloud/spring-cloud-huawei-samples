@@ -1,8 +1,8 @@
 package com.huaweicloud.samples.consumer;
 
 import com.google.common.eventbus.Subscribe;
-import com.huaweicloud.common.event.EventManager;
-import org.apache.servicecomb.config.common.ConfigurationChangedEvent;
+import org.apache.servicecomb.governance.event.GovernanceConfigurationChangedEvent;
+import org.apache.servicecomb.governance.event.GovernanceEventManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +16,13 @@ public class ConfigListen {
     String name;
 
     public ConfigListen() {
-        EventManager.register(this);
+        GovernanceEventManager.register(this);
     }
 
     @Subscribe
-    public void onConfigurationChangedEvent(ConfigurationChangedEvent event) {
-        if(event.getUpdated().containsKey("name")){
-            System.out.println("name updated");
+    public void onEnvironmentChangeEvent(GovernanceConfigurationChangedEvent event) {
+        if(event.getChangedConfigurations().contains("name")){
+            System.out.println("------------name updated----------------");
         }
     }
 }
