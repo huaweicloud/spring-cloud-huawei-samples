@@ -12,16 +12,18 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
 # Build and Run
+  There provide CSE/Nacos registry and configuration use ability in demo, according to the following command to use CSE/Nacos.
 
 * Prerequisites
 [Setup CSE environment](../CSE-ENV.md)
 
 [Setup Nacos environment](../NACOS-ENV.md)
 
-* CSE Build
+* Build
+  CSE
 
         mvn clean package -Pcse
-* Nacos Build
+  Nacos
 
         mvn clean package -Pnacos
 * Run provider

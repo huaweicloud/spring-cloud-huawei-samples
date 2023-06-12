@@ -12,16 +12,18 @@
   使用 Spring Cloud Gateway 开发一个网关， 网关将所有请求转发到 consumer。
 
 ## 使用
+  demo中提供了CSE、Nacos两套注册、配置中心的使用能力，依据以下对应命令分别使用CSE、Nacos。
 
 * 前提条件
   [准备CSE运行环境](../CSE-ENV_CN.md)
 
   [准备Nacos运行环境](../NACOS-ENV_CN.md)
 
-* CSE编译
+* 编译
+  CSE
 
         mvn clean package -Pcse
-* Nacos编译
+  Nacos
 
         mvn clean package -Pnacos
 * 启动 provider
