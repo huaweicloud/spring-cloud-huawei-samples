@@ -16,28 +16,46 @@
 * 前提条件
   [准备CSE运行环境](../CSE-ENV_CN.md)
 
-* 编译
+  [准备Nacos运行环境](../NACOS-ENV_CN.md)
 
-        mvn clean package
+* CSE编译
 
+        mvn clean package -Pcse
+* Nacos编译
+
+        mvn clean package -Pnacos
 * 启动 provider
 
   进入目录 ${Project}/provider/target/
+  CSE
 
-        java -jar basic-provider-1.0-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=cse basic-provider-1.0-SNAPSHOT.jar
+  Nacos
 
+        java -jar -Dspring.profiles.active=nacos basic-provider-1.0-SNAPSHOT.jar
 * 启动 consumer
 
   进入目录 ${Project}/consumer/target/
+  CSE
 
-        java -jar basic-consumer-1.0-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=cse basic-consumer-1.0-SNAPSHOT.jar
+  Nacos
 
+        java -jar -Dspring.profiles.active=nacos basic-consumer-1.0-SNAPSHOT.jar
 * 启动 gateway
 
   进入目录 ${Project}/gateway/target/
+  CSE
 
-        java -jar basic-gateway-1.0-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=cse basic-gateway-1.0-SNAPSHOT.jar
+  Nacos
+
+        java -jar -Dspring.profiles.active=nacos basic-gateway-1.0-SNAPSHOT.jar
 
 * 测试
 
-启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World 或者 http://localhost:9090/sayHelloFeign?name=World
+启动3个微服务后， 然后通过界面访问： http://localhost:9090/consumer/sayHello?name=World 或者 http://localhost:9090/consumer/sayHelloFeign?name=World
+
+* 测试动态配置
+
+启动3个微服务后， 然后通过界面访问： http://localhost:9090/consumer/testConfig

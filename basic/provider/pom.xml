@@ -25,11 +25,40 @@
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-registry-prometheus</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.huaweicloud</groupId>
-      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
-    </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>cse</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.huaweicloud</groupId>
+          <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
+          <exclusions>
+            <exclusion>
+              <groupId>com.huaweicloud</groupId>
+              <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>nacos</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.huaweicloud</groupId>
+          <artifactId>spring-cloud-starter-huawei-nacos</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
   <build>
     <plugins>
