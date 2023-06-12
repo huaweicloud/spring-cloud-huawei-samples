@@ -14,12 +14,13 @@ public class ConsumerController {
   @Autowired
   private FeignConsumerService feignConsumerService;
 
-  private ConfigListen configListen;
-
-  @Autowired
-  public ConsumerController(ConfigListen configListen) {
-    this.configListen = configListen;
-  }
+  //if use nacos, remove this field
+//  private ConfigListen configListen;
+//
+//  @Autowired
+//  public ConsumerController(ConfigListen configListen) {
+//    this.configListen = configListen;
+//  }
 
   // consumer service which delegate the implementation to provider service.
   @GetMapping("/sayHello")
@@ -30,5 +31,10 @@ public class ConsumerController {
   @GetMapping("/sayHelloFeign")
   public String sayHelloFeign(@RequestParam("name") String name) {
     return feignConsumerService.sayHelloFeign(name);
+  }
+
+  @GetMapping("/testConfig")
+  public String testConfig() {
+    return restTemplate.getForObject("http://basic-provider/testConfig", String.class);
   }
 }

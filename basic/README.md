@@ -12,32 +12,53 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
 # Build and Run
+  There provide CSE/Nacos registry and configuration use ability in demo, according to the following command to use CSE/Nacos.
 
 * Prerequisites
 [Setup CSE environment](../CSE-ENV.md)
 
+[Setup Nacos environment](../NACOS-ENV.md)
+
 * Build
+  CSE
 
-        mvn clean package
+        mvn clean package -Pcse
+  Nacos
 
+        mvn clean package -Pnacos
 * Run provider
 
   In ${Project}/provider/target/
-  
-        java -jar basic-provider-1.0-SNAPSHOT.jar
+  CSE
+
+        java -jar -Dspring.profiles.active=cse basic-provider-1.0-SNAPSHOT.jar
+  Nacos
+
+        java -jar -Dspring.profiles.active=nacos basic-provider-1.0-SNAPSHOT.jar
 
 * Run consumer
 
   In ${Project}/consumer/target/
+  CSE
 
-        java -jar basic-consumer-1.0-SNAPSHOT.jar
-                
+        java -jar -Dspring.profiles.active=cse basic-consumer-1.0-SNAPSHOT.jar
+  Nacos
+
+        java -jar -Dspring.profiles.active=nacos basic-consumer-1.0-SNAPSHOT.jar 
 * Run gateway
 
   In ${Project}/gateway/target/
+  CSE
 
-        java -jar basic-gateway-1.0-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=cse basic-gateway-1.0-SNAPSHOT.jar
+  Nacos
+
+        java -jar -Dspring.profiles.active=nacos basic-gateway-1.0-SNAPSHOT.jar
 
 * Testing
 
 Open in browser： http://localhost:9090/consumer/sayHello?name=World or http://localhost:9090/consumer/sayHelloFeign?name=World
+
+* Testing dynamic config
+
+Open in browser： http://localhost:9090/consumer/testConfig
