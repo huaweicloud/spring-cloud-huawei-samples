@@ -60,4 +60,9 @@
 
 * 测试动态配置
 
-启动3个微服务后， 然后通过界面访问： http://localhost:9090/consumer/testConfig
+启动3个微服务后，配置中心配置basic-provider服务级配置：
+
+    test:
+      name: test
+
+然后通过界面访问： http://localhost:9090/consumer/testConfig  查看配置下发。

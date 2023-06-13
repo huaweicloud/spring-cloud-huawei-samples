@@ -60,5 +60,9 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 Open in browser： http://localhost:9090/consumer/sayHello?name=World or http://localhost:9090/consumer/sayHelloFeign?name=World
 
 * Testing dynamic config
+When three service started, setting this config in configCenter:
 
-Open in browser： http://localhost:9090/consumer/testConfig
+      test:
+        name: test
+
+Open in browser： http://localhost:9090/consumer/testConfig, check config update.
