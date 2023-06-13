@@ -12,32 +12,57 @@
   使用 Spring Cloud Gateway 开发一个网关， 网关将所有请求转发到 consumer。
 
 ## 使用
+  demo中提供了CSE(Servicecomb)、CSE(Nacos)两套注册、配置中心的使用能力，依据以下对应命令分别使用CSE(Servicecomb)、CSE(Nacos)。
 
 * 前提条件
-  [准备CSE运行环境](../CSE-ENV_CN.md)
+  [准备CSE(Servicecomb)运行环境](../CSE-ENV_CN.md)
+
+  [准备CSE(Nacos)运行环境](../NACOS-ENV_CN.md)
 
 * 编译
+  CSE(Servicecomb)
 
-        mvn clean package
+        mvn clean package -Pcse
+  CSE(Nacos)
 
+        mvn clean package -Pnacos
 * 启动 provider
 
   进入目录 ${Project}/provider/target/
+  CSE(Servicecomb)
 
-        java -jar basic-provider-1.0-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=cse basic-provider-1.0-SNAPSHOT.jar
+  CSE(Nacos)
 
+        java -jar -Dspring.profiles.active=nacos basic-provider-1.0-SNAPSHOT.jar
 * 启动 consumer
 
   进入目录 ${Project}/consumer/target/
+  CSE(Servicecomb)
 
-        java -jar basic-consumer-1.0-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=cse basic-consumer-1.0-SNAPSHOT.jar
+  CSE(Nacos)
 
+        java -jar -Dspring.profiles.active=nacos basic-consumer-1.0-SNAPSHOT.jar
 * 启动 gateway
 
   进入目录 ${Project}/gateway/target/
+  CSE(Servicecomb)
 
-        java -jar basic-gateway-1.0-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=cse basic-gateway-1.0-SNAPSHOT.jar
+  CSE(Nacos)
+
+        java -jar -Dspring.profiles.active=nacos basic-gateway-1.0-SNAPSHOT.jar
 
 * 测试
 
-启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World 或者 http://localhost:9090/sayHelloFeign?name=World
+启动3个微服务后， 然后通过界面访问： http://localhost:9090/consumer/sayHello?name=World 或者 http://localhost:9090/consumer/sayHelloFeign?name=World
+
+* 测试动态配置
+
+启动3个微服务后，配置中心配置basic-provider服务级配置：
+
+    test:
+      name: test
+
+然后通过界面访问： http://localhost:9090/consumer/testConfig  查看配置下发。
