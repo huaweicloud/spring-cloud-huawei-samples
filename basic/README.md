@@ -12,46 +12,46 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 
 # Build and Run
-  There provide CSE/Nacos registry and configuration use ability in demo, according to the following command to use CSE/Nacos.
+  There provide CSE(Servicecomb)/CSE(Nacos) registry and configuration use ability in demo, according to the following command to use CSE(Servicecomb)/CSE(Nacos).
 
 * Prerequisites
-[Setup CSE environment](../CSE-ENV.md)
+[Setup CSE(Servicecomb) environment](../CSE-ENV.md)
 
-[Setup Nacos environment](../NACOS-ENV.md)
+[Setup CSE(Nacos) environment](../NACOS-ENV.md)
 
 * Build
-  CSE
+  CSE(Servicecomb)
 
         mvn clean package -Pcse
-  Nacos
+  CSE(Nacos)
 
         mvn clean package -Pnacos
 * Run provider
 
   In ${Project}/provider/target/
-  CSE
+  CSE(Servicecomb)
 
         java -jar -Dspring.profiles.active=cse basic-provider-1.0-SNAPSHOT.jar
-  Nacos
+  CSE(Nacos)
 
         java -jar -Dspring.profiles.active=nacos basic-provider-1.0-SNAPSHOT.jar
 
 * Run consumer
 
   In ${Project}/consumer/target/
-  CSE
+  CSE(Servicecomb)
 
         java -jar -Dspring.profiles.active=cse basic-consumer-1.0-SNAPSHOT.jar
-  Nacos
+  CSE(Nacos)
 
         java -jar -Dspring.profiles.active=nacos basic-consumer-1.0-SNAPSHOT.jar 
 * Run gateway
 
   In ${Project}/gateway/target/
-  CSE
+  CSE(Servicecomb)
 
         java -jar -Dspring.profiles.active=cse basic-gateway-1.0-SNAPSHOT.jar
-  Nacos
+  CSE(Nacos)
 
         java -jar -Dspring.profiles.active=nacos basic-gateway-1.0-SNAPSHOT.jar
 
@@ -60,5 +60,9 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
 Open in browser： http://localhost:9090/consumer/sayHello?name=World or http://localhost:9090/consumer/sayHelloFeign?name=World
 
 * Testing dynamic config
+When three service started, setting basic-provider service level config in configCenter:
 
-Open in browser： http://localhost:9090/consumer/testConfig
+      test:
+        name: test
+
+Open in browser： http://localhost:9090/consumer/testConfig, check config update.
