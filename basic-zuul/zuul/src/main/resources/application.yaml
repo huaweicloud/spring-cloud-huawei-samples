@@ -22,3 +22,11 @@ zuul:
     zuul-server:
       serviceId: basic-zuul-consumer
       path: /**
+
+  host:
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
