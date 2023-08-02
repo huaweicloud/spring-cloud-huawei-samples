@@ -22,3 +22,9 @@ zuul:
     zuul-server:
       serviceId: basic-zuul-consumer
       path: /**
+
+# zuul loadBalance is using RibbonLoadbalancingHttpClient, socketTimeout and connectTimeout is
+# using ribbon ReadTimeout and ConnectTimeout
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
