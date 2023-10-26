@@ -1,7 +1,5 @@
 package com.huaweicloud.samples.porter.file.controler;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.servicecomb.foundation.common.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.huaweicloud.common.context.InvocationContextHolder;
 import com.huaweicloud.samples.porter.file.service.FileService;
 import com.huaweicloud.samples.porter.file.service.impl.SessionInfo;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(path = "/v1/file")
