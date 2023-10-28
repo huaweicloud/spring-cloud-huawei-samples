@@ -12,9 +12,6 @@ A Microserivce using Spring Cloud with a REST interface.
 * consumer
 A Microserivce using Spring Cloud with a REST interface. Consumer calls provider with RestTemplate.
 
-* gateway
-A Microserivce using Spring Cloud Gateway to forward requests to consumer.
-
 # Build and Run
 
 * Prerequisites
@@ -29,10 +26,6 @@ A Microserivce using Spring Cloud Gateway to forward requests to consumer.
   copy project war put in tomcat/webapps,then start-up tomcat server
 
 * Run consumer
-
-  copy project war put in tomcat/webapps,then start-up tomcat server
-
-* Run gateway
 
   copy project war put in tomcat/webapps,then start-up tomcat server
   
@@ -52,10 +45,7 @@ Open in browser： http://localhost:9090/sayHello?name=World
 使用 Spring Cloud 开发一个 REST 接口。
 
 * consumer
-使用 Spring Cloud 开发一个 REST 接口， 接口实现通过 RestTemplate 调用 provider 的接口。 
-
-* gateway
-使用 Spring Cloud Gateway 开发一个网关， 网关将所有请求转发到 consumer。 
+使用 Spring Cloud 开发一个 REST 接口， 接口实现通过 RestTemplate 调用 provider 的接口。
 
 ## 使用
 
@@ -73,13 +63,9 @@ Open in browser： http://localhost:9090/sayHello?name=World
 * 启动 consumer
 
   将项目打包好的war包部署到tomcat安装文件的webapps文件夹中，startup.bat启动服务
-
-* 启动 gateway
-
-  将项目打包好的war包部署到tomcat安装文件的webapps文件夹中，startup.bat启动服务
   
 以上每个服务都单独部署一个tomcat服务
 
 * 测试
 
-启动3个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World
+启动2个微服务后， 然后通过界面访问： http://localhost:9090/sayHello?name=World
