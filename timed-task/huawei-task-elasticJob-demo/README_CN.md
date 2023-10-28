@@ -29,5 +29,6 @@
 
 - ElasticJob具体实现原理[参考资料](https://shardingsphere.apache.org/elasticjob/legacy/lite-2.x/03-design/lite-design/)
 
+- elasticjob 不支持 springboot3.0 自动配置，需要在META-INF.spring中添加自动配置org.apache.shardingsphere.elasticjob.lite.spring.boot.job.ElasticJobLiteAutoConfiguration
 
   

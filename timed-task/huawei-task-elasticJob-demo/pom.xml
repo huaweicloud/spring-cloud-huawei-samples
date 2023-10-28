@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.3</version>
+    <version>3.0.10</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
@@ -18,9 +18,9 @@
   <description>huawei-task-elasticJob-demo</description>
 
   <properties>
-    <java.version>1.8</java.version>
-    <elasticjob.version>3.0.1</elasticjob.version>
-    <spring-cloud-huawei.version>1.8.0-2020.0.x</spring-cloud-huawei.version>
+    <java.version>17</java.version>
+    <elasticjob.version>3.0.3</elasticjob.version>
+    <spring-cloud-huawei.version>1.11.1-2022.0.x</spring-cloud-huawei.version>
   </properties>
 
   <dependencies>
@@ -37,6 +37,11 @@
       <groupId>com.huaweicloud</groupId>
       <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
       <version>${spring-cloud-huawei.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents.client5</groupId>
+      <artifactId>httpclient5</artifactId>
+      <version>5.2.1</version>
     </dependency>
   </dependencies>
 
