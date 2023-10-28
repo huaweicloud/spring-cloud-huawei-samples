@@ -1,26 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.10</version>
+    <groupId>com.huaweicloud.samples</groupId>
+    <artifactId>basic-application-tomcat</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>huawei-task-job</artifactId>
-  <packaging>jar</packaging>
-
-  <properties>
-    <xxl-job.version>2.3.0</xxl-job.version>
-    <spring-cloud-huawei.version>1.11.1-2022.0.x</spring-cloud-huawei.version>
-  </properties>
+  <artifactId>basic-consumer-tomcat</artifactId>
+  <packaging>war</packaging>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <!--springboot启动需要注销剔除内置tomcat-->
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -29,17 +36,6 @@
     <dependency>
       <groupId>com.huaweicloud</groupId>
       <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
-      <version>${spring-cloud-huawei.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.xuxueli</groupId>
-      <artifactId>xxl-job-core</artifactId>
-      <version>${xxl-job.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents.client5</groupId>
-      <artifactId>httpclient5</artifactId>
-      <version>5.2.1</version>
     </dependency>
   </dependencies>
 
@@ -48,6 +44,14 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
       </plugin>
     </plugins>
   </build>
