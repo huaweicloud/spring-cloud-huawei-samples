@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: basic-tomcat-consumer
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: http://127.0.0.1:8848
+        service: ${spring.application.name}
+      config:
+        enabled: true
+        server-addr: http://127.0.0.1:8848
+        service: ${spring.application.name}
