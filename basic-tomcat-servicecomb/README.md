@@ -15,7 +15,8 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 # Build and Run
 
 * Prerequisites
-[Setup CSE environment](../CSE-ENV.md)
+  * [Setup CSE environment](../CSE-ENV.md)
+  * tomcat version required 10.x or uper to support JDK17
 
 * Build
 
@@ -50,7 +51,8 @@ Open in browser： http://localhost:9090/sayHello?name=World
 ## 使用
 
 * 前提条件
-[准备CSE运行环境](../CSE-ENV_CN.md)
+  * [准备CSE运行环境](../CSE-ENV_CN.md)
+  * tomcat 版本要求10.x及以上才能支持JDK17
 
 * 编译
 
