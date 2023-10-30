@@ -9,9 +9,9 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.6.7</spring-boot.version>
-    <spring-cloud.version>2021.0.3</spring-cloud.version>
-    <spring-cloud-huawei.version>1.10.0-2021.0.x</spring-cloud-huawei.version>
+    <spring-boot.version>2.7.15</spring-boot.version>
+    <spring-cloud.version>2021.0.8</spring-cloud.version>
+    <spring-cloud-huawei.version>1.11.1-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
   <dependencyManagement>
@@ -35,7 +35,7 @@
       <!-- configure spring cloud huawei version -->
       <dependency>
         <groupId>com.huaweicloud</groupId>
-        <artifactId>spring-cloud-huawei-bom</artifactId>
+        <artifactId>spring-cloud-huawei-dependencies</artifactId>
         <version>${spring-cloud-huawei.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -46,7 +46,6 @@
   <modules>
     <module>provider</module>
     <module>consumer</module>
-    <module>gateway</module>
   </modules>
 
   <build>

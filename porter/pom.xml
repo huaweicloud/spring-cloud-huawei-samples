@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-cloud-huawei.version>1.10.2-2021.0.x</spring-cloud-huawei.version>
+    <spring-cloud-huawei.version>1.11.1-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
   <modules>

@@ -15,7 +15,7 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 # Build and Run
 
 * Prerequisites
-  * [Setup CSE environment](../CSE-ENV.md)
+  * [Setup CSE environment](../NACOS-ENV.md)
 
 * Build
 
@@ -50,7 +50,7 @@ Open in browser： http://localhost:8082/sayHello?name=World
 ## 使用
 
 * 前提条件
-  * [准备CSE运行环境](../CSE-ENV_CN.md)
+  * [准备CSE运行环境](../NACOS-ENV_CN.md)
 
 * 编译
 
