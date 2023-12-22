@@ -4,7 +4,24 @@ server:
 servicecomb:
   routeRule:
     canary-provider: |
+      - precedence: 2 #优先级
+        match:
+          headers:
+            canary:
+              exact: fallback
+        route: #路由规则
+          - weight: 100
+            tags:
+              version: 0.0.3
+        fallback: #降级路由规则
+          - weight: 100
+            tags:
+              version: 0.0.1
       - precedence: 1 #优先级
+        match:
+          headers:
+            id:
+              exact: '1'
         route: #路由规则
           - weight: 80
             tags:
@@ -12,3 +29,24 @@ servicecomb:
           - weight: 20
             tags:
               version: 0.0.2
+
+  matchGroup:
+    headerIsolationOperation: |
+      matches:
+        - apiPath:
+            prefix: "/canaryHeaderIsolation"
+  instanceIsolation:
+    ## 熔断器错误率达到50%或者耗时请求达到100%，将开启。
+    ## 开启时间为5000毫秒，然后会放通10个请求。
+    headerIsolationOperation: |
+      minimumNumberOfCalls: 2
+      slidingWindowSize: 2
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      slowCallRateThreshold: 50
+      slowCallDurationThreshold: 5000
+      waitDurationInOpenState: 5000
+      permittedNumberOfCallsInHalfOpenState: 100
+      recordFailureStatus:
+        - 502
+        - 503

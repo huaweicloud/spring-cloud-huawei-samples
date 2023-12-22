@@ -1,0 +1,21 @@
+servicecomb:
+  matchGroup:
+    headerCircuitOperation: |
+      matches:
+        - apiPath:
+            prefix: "/canaryHeaderCircuit"
+  circuitBreaker:
+    ## 熔断器错误率达到50%或者耗时请求达到100%，将开启。
+    ## 开启时间为5000毫秒，然后会放通10个请求。
+    headerCircuitOperation: |
+      minimumNumberOfCalls: 2
+      slidingWindowSize: 2
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      slowCallRateThreshold: 50
+      slowCallDurationThreshold: 5000
+      waitDurationInOpenState: 5000
+      permittedNumberOfCallsInHalfOpenState: 100
+      recordFailureStatus:
+        - 502
+        - 503
