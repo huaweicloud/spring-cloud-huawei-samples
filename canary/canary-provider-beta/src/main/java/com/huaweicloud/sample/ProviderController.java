@@ -41,4 +41,9 @@ public class ProviderController {
     response.addHeader("X-HTTP-STATUS-CODE", "502");
     return "beta: provider circuit method, port -->" + port + " ,version--->" + version;
   }
+
+  @RequestMapping("/canaryHeaderRetry")
+  public String canaryHeaderRetry() {
+    return "provider retry method, port -->" + port + " ,version--->" + version;
+  }
 }
