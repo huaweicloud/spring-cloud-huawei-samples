@@ -59,4 +59,9 @@ public class ConsumerController {
       return "circuitBreaker open";
     }
   }
+
+  @RequestMapping("/canaryHeaderRetry")
+  public String canaryHeaderRetry() {
+    return restTemplate.getForObject("http://canary-provider/canaryHeaderRetry", String.class);
+  }
 }

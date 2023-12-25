@@ -35,6 +35,10 @@ servicecomb:
       matches:
         - apiPath:
             prefix: "/canaryHeaderIsolation"
+    headerRetryOperation: |
+      matches:
+        - apiPath:
+            prefix: "/canaryHeaderRetry"
   instanceIsolation:
     ## 熔断器错误率达到50%或者耗时请求达到100%，将开启。
     ## 开启时间为5000毫秒，然后会放通10个请求。
@@ -48,5 +52,13 @@ servicecomb:
       waitDurationInOpenState: 5000
       permittedNumberOfCallsInHalfOpenState: 100
       recordFailureStatus:
+        - 502
+        - 503
+  retry:
+    ## 重试器最多重试2次，并且尽可能选择不同于失败的实例进行重试。
+    headerRetryOperation: |
+      maxAttempts: 2
+      retryOnSame: 0
+      retryOnResponseStatus:
         - 502
         - 503
