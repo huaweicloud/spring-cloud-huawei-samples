@@ -36,6 +36,11 @@ servicecomb:
       maxConcurrentCalls: 50
       maxWaitDuration: 1000
 
+---
+spring:
+  config:
+    activate:
+      on-profile: cse
 # 配合容器readiness检查 /actuator/health/readiness，服务注册成功才会返回true。
 management:
   endpoint:
@@ -43,6 +48,26 @@ management:
       group:
         readiness:
           include: registry
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: nacos
+# 配合容器readiness检查 /actuator/health/readiness，服务注册成功才会返回true。
+management:
+  endpoint:
+    health:
+      group:
+        readiness:
+          include: nacosDiscovery
   endpoints:
     web:
       exposure:
