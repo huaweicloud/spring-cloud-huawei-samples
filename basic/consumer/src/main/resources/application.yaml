@@ -27,8 +27,11 @@ servicecomb:
       failureRateThreshold: 50
       slowCallRateThreshold: 50
       slowCallDurationThreshold: 5000
-      waitDurationInOpenState: 5000
-      permittedNumberOfCallsInHalfOpenState: 10
+      waitDurationInOpenState: 60000
+      permittedNumberOfCallsInHalfOpenState: 2
+      recordFailureStatus:
+        - 500
+        - 503
   instanceBulkhead:
     ## 隔离仓限制正在处理的请求数为20个，新来的请求等待1000毫秒没有获取到
     ## 许可，将被拒绝。
@@ -37,16 +40,16 @@ servicecomb:
       maxWaitDuration: 1000
 
 # 配合容器readiness检查 /actuator/health/readiness，服务注册成功才会返回true。
-management:
-  endpoint:
-    health:
-      group:
-        readiness:
-          include: registry
-  endpoints:
-    web:
-      exposure:
-        include: "health,prometheus"
-  metrics:
-    tags:
-      application: ${spring.application.name}
+#management:
+#  endpoint:
+#    health:
+#      group:
+#        readiness:
+#          include: registry
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "health,prometheus"
+#  metrics:
+#    tags:
+#      application: ${spring.application.name}

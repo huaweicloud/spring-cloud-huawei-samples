@@ -21,10 +21,7 @@ public class ProviderController {
 
   @GetMapping("/sayHelloFeign")
   public String sayHelloFeign(@RequestParam("name") String name) {
-    if ("error".equals(name)) {
-      throw new RuntimeException("inject error");
-    }
-    return "Hello from Normal " + name;
+    return "Hello from Fallback " + name;
   }
 
   @GetMapping("/testConfig")

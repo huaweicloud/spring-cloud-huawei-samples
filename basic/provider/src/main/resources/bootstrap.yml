@@ -4,7 +4,7 @@ server:
 # Profile：注册中心类型：cse/nacos
 spring:
   profiles:
-    active: cse
+    active: nacos
 
   application:
     # 微服务名称。 微服务名称定义好以后，后续不能变更。
@@ -12,8 +12,9 @@ spring:
 
 # CSE 注册配置中心
 ---
-spring:
-  profiles: cse
+config:
+  activate:
+    on-profile: cse
   cloud:
     servicecomb:
       # 微服务的基本信息
@@ -53,8 +54,9 @@ spring:
 
 # Nacos 注册配置中心
 ---
-spring:
-  profiles: nacos
+config:
+  activate:
+    on-profile: nacos
   cloud:
     nacos:
       discovery:
