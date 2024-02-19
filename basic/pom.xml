@@ -26,11 +26,11 @@
   </dependencyManagement>
 
   <modules>
-    <module>provider-fallback</module>
-    <module>provider</module>
-    <module>consumer</module>
-    <module>gateway</module>
-    <module>benchmark</module>
+    <module>app3-az2</module>
+    <module>app3</module>
+    <module>app2</module>
+    <module>core-gateway</module>
+    <module>app1</module>
   </modules>
 
   <build>
