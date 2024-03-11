@@ -12,22 +12,21 @@
   使用 Spring Cloud 开发一个 REST 业务接口。
 
 ## 项目编译及前提条件
-  
+
+* 项目编译
+  mvn clean package
+
 * 前提条件
-  [准备应用部署ECS虚拟机](/ECS-ENV_CN.md)  
+  [准备应用部署ECS虚拟机](/ECS-ENV_CN.md)
 
   [准备应用网关运行环境](/GATEWAY-ENV_CN.md)
 
   [准备CSE(Nacos)运行环境](/NACOS-ENV_CN.md)
 
->>> 注意：1、ECS、应用网关、Nacos引擎的虚拟私有云VPC要相同；
-       2、注册到Nacos的微服务名称只支持小写、‘-’、数字，不支持驼峰命名、特殊字符。
-
-* 项目编译
-  mvn clean package
+>>> 注意：1、ECS、应用网关、Nacos引擎的虚拟私有云VPC要相同；2、注册到Nacos的微服务名称只支持小写、‘-’、数字，不支持驼峰命名、特殊字符。
 
 ## 服务启动
-  ECS节点启动服务时，通过环境变量注入Nacos引擎的地址 -DCSE_NACOS_ADDRESS=华为云Nacos内网地址:8848
+  ECS节点启动服务时，通过环境变量注入Nacos引擎地址 -DCSE_NACOS_ADDRESS=华为云Nacos内网地址:8848
 
 * 启动 auth-service
   
@@ -63,7 +62,7 @@
   =》创建鉴权规则
      鉴权类型: ![](鉴权类型.png)
          =》自定义鉴权规则名称、选择鉴权服务、填写鉴权服务端口；
-         =》请求中允许携带的请求头: 当请求需要透传header时，该项需要填写, 否则header无法透传, 例如demo中要使用header的x-token作为获取token来源，则该项设置为x-token
+         =》请求中允许携带的请求头: 当请求需要透传header时，该项需要进行对应设置, 否则header无法透传, 例如demo中要使用header的x-token作为获取token来源，可设置为x-token
          =》鉴权接口: 接口鉴权url + 业务url = 鉴权服务url，匹配“条件规则”指定的url前提下，自动添加鉴权接口url进行身份鉴权，如页面设置鉴权接口 /authentication, 业务接口 /authBusiness, 
            那么鉴权服务定义接口为/authentication/authBusiness 或者 /authentication/*
      >>> 注意: 当鉴权服务仅设置 /authentication/authBusiness 鉴权接口时，如果网关设置为对所有服务进行鉴权，/authBusiness 以外的业务url都将出现404异常。
@@ -79,7 +78,7 @@
 * 鉴权服务对所有请求生效
   鉴权页面设置:
     鉴权接口: /authentication
-    条件规则服务地址: *
+    条件规则-服务地址: *
   
   ECS节点访问网关: curl -kv -H "x-token:auth2024" http://xxx.xxx.xxx.xx:80/authBusiness?name=2222
   业务正常返回: Hello 2222; server port: 9094
@@ -96,7 +95,7 @@
 * 鉴权服务对某个url生效
   鉴权页面设置:
     鉴权接口: /authentication
-    条件规则服务地址: 前缀 /authBusiness
+    条件规则-服务地址: 前缀 /authBusiness
 
   ECS节点访问网关: curl -kv -H "x-token:auth2024" http://xxx.xxx.xxx.xx:80/authBusiness?name=2222
   业务正常返回: Hello 2222; server port: 9094
