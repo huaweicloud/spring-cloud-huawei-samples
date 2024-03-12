@@ -6,10 +6,10 @@
   使用 Spring Cloud 开发一个 REST 接口进行鉴权，接口中url设置为 /authentication/* 是为了适配网关对所有服务进行鉴权，如果设置为某个url时，其余需要鉴权的url会出现404异常。
 
 * auth-business-service
-  使用 Spring Cloud 开发一个 REST 业务接口。
+  使用 Spring Cloud 开发一个 REST 业务接口，用于验证需要鉴权的服务。
 
 * un-auth-service
-  使用 Spring Cloud 开发一个 REST 业务接口。
+  使用 Spring Cloud 开发一个 REST 业务接口，用于验证不需要鉴权的服务。
 
 ## 项目编译及前提条件
 
