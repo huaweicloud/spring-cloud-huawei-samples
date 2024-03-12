@@ -15,7 +15,14 @@ public class AuthenticationController {
   @Value("${gateway.checkToken:auth2024}")
   private String checkToken;
 
-  @GetMapping("/authentication/authBusiness")
+  /**
+   * 当网关设置为对所有服务进行鉴权时，需要通配所有业务url
+   *
+   * @param request
+   * @param response
+   * @return
+   */
+  @GetMapping("/authentication/*")
   public boolean sayHello(HttpServletRequest request,
       HttpServletResponse response) {
     String authToken = request.getHeader("x-token");
