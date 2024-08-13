@@ -6,4 +6,4 @@ servicecomb:
             prefix: "/"
   loadbalance:
     AllOperation: |
-      rule: Random
+      rule: RoundRobin

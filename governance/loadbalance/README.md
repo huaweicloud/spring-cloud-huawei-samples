@@ -1,14 +1,17 @@
 # Description
-This project providers sample to show working with Canary Deploy. 
+This project providers sample to show working with load-balance Deploy. 
 
-* canary-provider
+* provider-one
 A Microserivce using Spring Cloud with a REST interface.
 
-* canary-provider-beta
-Same as canary-provider, but with version 0.0.2
+* provider-two
+Same as provider-one, but with version 0.0.2
 
-* canary-consumer
-A Microserivce using Spring Cloud with a REST interface. Consumer calls provider with RestTemplate.
+* provider-three
+  Same as provider-one, but with version 0.0.3
+
+* consumer
+A Microserivce using Spring Cloud with a REST interface. Consumer calls load-balance-provider with RestTemplate.
 
 # Build and Run
 
@@ -21,40 +24,49 @@ A Microserivce using Spring Cloud with a REST interface. Consumer calls provider
 
 * Run provider
 
-  In ${Project}/canary-provider/target/
+  In ${Project}/provider-one/target/
   
-        java -jar canary-provider-1.0-SNAPSHOT.jar
+        java -jar provider-one-1.0-SNAPSHOT.jar
 
-* Run provider
+* Run provider-two
 
-  In ${Project}/canary-provider-beta/target/
+  In ${Project}/provider-two/target/
   
-        java -jar canary-provider-beta-1.0-SNAPSHOT.jar
-        
+        java -jar provider-two-1.0-SNAPSHOT.jar
+
+* Run provider-three
+
+  In ${Project}/provider-three/target/
+
+        java -jar provider-three-1.0-SNAPSHOT.jar
+
 * Run consumer
 
-  In ${Project}/canary-consumer/target/
+  In ${Project}/consumer/target/
 
-        java -jar canary-consumer-1.0-SNAPSHOT.jar
+        java -jar consumer-1.0-SNAPSHOT.jar
 
 * Testing
 
-Open in browser： http://localhost:8091/canary?id=2
+Open in browser： http://localhost:8090/load-balance?id=111
 
-About 20% result output by provider-beta, and 80% result output by provider. 
+All returned results are sorted by version number. 
 
 # 项目说明
 
 这个项目提供了 Spring Cloud Huawei 灰度发布的例子。
 
-* canary-provider
+* provider-one
 使用 Spring Cloud 开发一个 REST 接口。
 
-* canary-provider-beta
-canary-provider的0.0.2版本。 
+* provider-two
+load-balance-provider的0.0.2版本。 
 
-* canary-consumer
-使用 Spring Cloud 开发一个 REST 接口， 接口实现通过 RestTemplate 调用 provider 的接口。 
+* provider-three
+  load-balance-provider的0.0.3版本。
+
+* consumer
+使用 Spring Cloud 开发一个 REST 接口， 接口实现通过 RestTemplate 调用 load-balance-provider 的接口。 
 
 ## 使用
 
@@ -65,25 +77,30 @@ canary-provider的0.0.2版本。
 
         mvn clean package
 
-* 启动 provider
+* 启动 provider-one
 
-  进入目录 ${Project}/canary-provider/target/
+  进入目录 ${Project}/provider-one/target/
          
-        java -jar canary-provider-1.0-SNAPSHOT.jar
+        java -jar provider-one-1.0-SNAPSHOT.jar
 
-* 启动 provider
+* 启动 provider-two
 
-  进入目录 ${Project}/canary-provider-beta/target/
+  进入目录 ${Project}/provider-two/target/
          
-        java -jar canary-provider-beta-1.0-SNAPSHOT.jar
-        
+        java -jar provider-two-1.0-SNAPSHOT.jar
+
+* 启动 provider-three
+
+  进入目录 ${Project}/provider-three/target/
+
+        java -jar provider-three-1.0-SNAPSHOT.jar
+
 * 启动 consumer
 
-  进入目录 ${Project}/canary-consumer/target/
+  进入目录 ${Project}/consumer/target/
        
-        java -jar canary-consumer-1.0-SNAPSHOT.jar
+        java -jar consumer-1.0-SNAPSHOT.jar
 
 * 测试
 
-启动3个微服务后， 然后通过界面访问： http://localhost:8091/canary?id=2。 provider-beta产生20%的响应，
-provider产生80%的响应。
+启动4个微服务后， 然后通过界面访问： http://localhost:8090/load-balance?id=111。 返回结果按版本号有规律顺序的返回。
