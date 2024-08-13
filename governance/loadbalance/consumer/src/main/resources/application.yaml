@@ -1,0 +1,9 @@
+servicecomb:
+  matchGroup:
+    AllOperation: |
+      matches:
+        - apiPath:
+            prefix: "/"
+  loadbalance:
+    AllOperation: |
+      rule: Random
