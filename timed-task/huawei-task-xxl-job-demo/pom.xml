@@ -13,8 +13,8 @@
   <packaging>jar</packaging>
 
   <properties>
-    <xxl-job.version>2.3.0</xxl-job.version>
-    <spring-cloud-huawei.version>1.11.7-2023.0.x</spring-cloud-huawei.version>
+    <xxl-job.version>2.3.1</xxl-job.version>
+    <spring-cloud-huawei.version>1.11.11-2023.0.x</spring-cloud-huawei.version>
   </properties>
 
   <dependencies>

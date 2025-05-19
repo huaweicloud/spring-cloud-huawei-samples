@@ -4,14 +4,17 @@ spring:
     name: basic-tomcat-consumer
   cloud:
     servicecomb:
+      service:
+        # 应用名称，本示例使用ServiceStage组件名称，建议修改为固定值，
+        # 因为只有应用名称相同的微服务才能够相互发现，不能轻易变化。
+        application: ${CAS_APPLICATION_NAME:basic-tomcat-application}
+        name: ${spring.application.name}
+        # 微服务版本号，本示例使用ServiceStage环境变量。建议保留这种配置方式，
+        # 部署的时候，不用手工修改版本号，防止契约注册失败。
+        version: ${CAS_INSTANCE_VERSION:0.0.1}
       discovery:
-        # 应用名称，本示例固定值（可替换成自己想要的名字），因为只有应用名称相同的微服务才能够相互发现，不能轻易变化。
-        appName: basic-tomcat-application
-        serviceName: ${spring.application.name}
         # 注册中心地址，本示例使用ServiceStage环境变量。建议保留这种配置方式，部署的时候，不用手工修改地址。
         address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
-        # 微服务版本号，本示例使用ServiceStage环境变量。建议保留这种配置方式，部署的时候，不用手工修改版本号，防止契约注册失败。
-        version: ${CAS_INSTANCE_VERSION:0.0.1}
       config:
         # 配置中心地址，本示例使用ServiceStage环境变量。建议保留这种配置方式，部署的时候，不用手工修改地址。
         serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}

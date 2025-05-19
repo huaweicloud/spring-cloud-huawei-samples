@@ -9,9 +9,9 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-cloud.version>2023.0.1</spring-cloud.version>
-    <spring-boot.version>3.2.4</spring-boot.version>
-    <spring-cloud-huawei.version>1.11.7-2023.0.x</spring-cloud-huawei.version>
+    <spring-cloud.version>2023.0.5</spring-cloud.version>
+    <spring-boot.version>3.3.10</spring-boot.version>
+    <spring-cloud-huawei.version>1.11.11-2023.0.x</spring-cloud-huawei.version>
   </properties>
 
   <dependencyManagement>
@@ -20,6 +20,20 @@
         <groupId>com.huaweicloud</groupId>
         <artifactId>spring-cloud-huawei-dependencies</artifactId>
         <version>${spring-cloud-huawei.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
