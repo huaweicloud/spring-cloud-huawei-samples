@@ -18,6 +18,7 @@
 
 * master: Spring Cloud 2024.0.x, 依赖 JDK17
 * 2023.0.x: Spring Cloud 2023.0.x, 依赖 JDK17
+* 2022.0.x: Spring Cloud 2022.0.x, 依赖 JDK17
 * 2021.0.x: Spring Cloud 2021.0.x, 依赖 JDK8
 * 2020.0.x: Spring Cloud 2020.0.x, 依赖 JDK8
 * Hoxton: Spring Cloud Hoxton(EOL，不用于生产环境使用)

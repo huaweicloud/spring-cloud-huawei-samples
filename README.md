@@ -19,6 +19,7 @@ Branches:
 
 * master: for Spring Cloud 2024.0.x and reqiures JDK 17
 * 2023.0.x: for Spring Cloud 2023.0.x and reqiures JDK 17
+* 2022.0.x: for Spring Cloud 2022.0.x and reqiures JDK 17
 * 2021.0.x: for Spring Cloud 2021.0.x and reqiures JDK 8
 * 2020.0.x: for Spring Cloud 2020.0.x and reqiures JDK 8
 * Hoxton: for Spring Cloud Hoxton(EOL, not for pruducton use)
