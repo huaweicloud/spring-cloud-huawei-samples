@@ -15,7 +15,7 @@ public class ProviderThreeController {
   @Value("${server.port}")
   private Integer port;
 
-  @Value("${spring.cloud.servicecomb.discovery.version}")
+  @Value("${spring.cloud.servicecomb.service.version}")
   private String version;
 
   @RequestMapping("/load-balance")

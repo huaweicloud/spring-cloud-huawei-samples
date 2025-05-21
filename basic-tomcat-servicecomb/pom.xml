@@ -9,9 +9,9 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.7.15</spring-boot.version>
-    <spring-cloud.version>2021.0.8</spring-cloud.version>
-    <spring-cloud-huawei.version>1.11.1-2021.0.x</spring-cloud-huawei.version>
+    <spring-boot.version>2.7.18</spring-boot.version>
+    <spring-cloud.version>2021.0.9</spring-cloud.version>
+    <spring-cloud-huawei.version>1.11.11-2021.0.x</spring-cloud-huawei.version>
   </properties>
 
   <dependencyManagement>
