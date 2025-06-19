@@ -1,0 +1,53 @@
+servicecomb:
+  matchGroup:
+    circuit-service-name: |
+      matches:
+        - apiPath:
+            prefix: "/circuit/serviceName"
+          serviceName: circuit-consumer
+    circuit-not-open-rate100: |
+      matches:
+        - apiPath:
+            prefix: "/circuit/notOpen/errorRate100"
+    circuit-rate50: |
+      matches:
+        - apiPath:
+            prefix: "/circuit/errorRate50"
+    circuit-code500: |
+      matches:
+        - apiPath:
+            prefix: "/circuit/errorCode500"
+    circuit-header-code: |
+      matches:
+        - apiPath:
+            prefix: "/circuit/headerCode"
+  circuitBreaker:
+    circuit-service-name: |
+      minimumNumberOfCalls: 2
+      slidingWindowSize: 2
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 20
+    circuit-not-open-rate100: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 100
+    circuit-rate50: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+    circuit-code500: |
+      minimumNumberOfCalls: 2
+      slidingWindowSize: 2
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      recordFailureStatus:
+        - 502
+        - 503
+        - 500
+    circuit-header-code: |
+      minimumNumberOfCalls: 2
+      slidingWindowSize: 2
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
