@@ -1,0 +1,95 @@
+servicecomb:
+  matchGroup:
+    minimumOperation: |
+      matches:
+        - apiPath:
+            prefix: "/minimum-calls"
+    percentOperation: |
+      matches:
+        - apiPath:
+            prefix: "/failed-percent"
+    slowOperation: |
+      matches:
+        - apiPath:
+            prefix: "/slow-call"
+    forceClosedOperation: |
+      matches:
+        - apiPath:
+            prefix: "/force-closed"
+    forceOpenOperation: |
+      matches:
+        - apiPath:
+            exact: "/force-open"
+    forceOpenServiceNameOperation: |
+      matches:
+        - apiPath:
+            prefix: "/force-open-service"
+          serviceName: isolation-provider
+    errorCodeOperation: |
+      matches:
+        - apiPath:
+            prefix: "/error-code"
+  instanceIsolation:
+    minimumOperation: |
+      # 最小统计请求数，当请求大于等于当前minimumNumberOfCalls时，统计滑动窗口中的失败率、慢请求率，默认值100
+      minimumNumberOfCalls: 10
+      # 如果slidingWindowType为TIME_BASED时，slidingWindowSize为对应的滑动时间，单位秒，默认值100，如果是COUNT_BASED，则参数为60秒内的请求数
+      slidingWindowSize: 10
+      # 滑动窗口类型，COUNT_BASED请求数滑动窗，TIME_BASED时间滑动窗，默认为TIME_BASED
+      slidingWindowType: COUNT_BASED
+      # 请求错误率阀值，当滑动窗口中错误率大于等于failureRateThreshold设置的值时，熔断打开，默认值50
+      failureRateThreshold: 50
+      # 慢请求率阀值，当滑动窗口中慢请求率大于等于slowCallRateThreshold设置的值时，熔断打开，默认值100
+      slowCallRateThreshold: 100
+      # 熔断时间，当熔断开关打开后，waitDurationInOpenState设置的时间内的请求直接错误返回，单位毫秒，默认值60000
+      waitDurationInOpenState: 60000
+      # 慢请求消耗时间阀值，当一个请求从接收到响应的时间大于此时间时，统计为慢请求，默认值60000
+      slowCallDurationThreshold: 60000
+      # 熔断统计错误码，只有请求响应码满足设定值时才会进行错误率统计，默认值502、503
+      recordFailureStatus:
+        - 502
+        - 503
+      # 熔断开关半开时，允许permittedNumberOfCallsInHalfOpenState个请求通过
+      permittedNumberOfCallsInHalfOpenState: 10
+      # 强制关闭策略开关，为true时，所有请求不执行熔断策略，默认值为false
+      forceClosed: false
+      # 强制开启策略开关，为true时，所有能匹配上matches的请求直接错误返回，默认值为false
+      forceOpen: false
+    percentOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+    slowOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      slowCallRateThreshold: 50
+      slowCallDurationThreshold: 2000
+    forceClosedOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      forceClosed: true
+    forceOpenOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      forceOpen: true
+    forceOpenServiceNameOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      forceOpen: true
+    errorCodeOperation: |
+      minimumNumberOfCalls: 10
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      failureRateThreshold: 50
+      recordFailureStatus:
+        - 502
+        - 503
+        - 500
