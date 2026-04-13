@@ -1,0 +1,60 @@
+servicecomb:
+  matchGroup:
+    retryOperation: |
+      matches:
+        - apiPath:
+            exact: "/test-retry"
+    statusOperation: |
+      matches:
+        - apiPath:
+            exact: "/status-retry"
+    serviceOperation: |
+      matches:
+        - apiPath:
+            exact: "/retry-service-name"
+          serviceName: provider
+    onSameOneOperation: |
+      matches:
+        - apiPath:
+            exact: "/on-same-retry-one"
+    onSameTwoOperation: |
+      matches:
+        - apiPath:
+            exact: "/on-same-retry-two"
+  retry:
+    retryOperation: |
+      maxAttempts: 3
+      retryOnSame: 1
+      retryOnResponseStatus:
+      - 502
+      - 503
+      waitDuration: 1
+    statusOperation: |
+      maxAttempts: 3
+      retryOnResponseStatus:
+      - 502
+      - 503
+      - 500
+      waitDuration: 1
+    serviceOperation: |
+      maxAttempts: 3
+      retryOnSame: 0
+      retryOnResponseStatus:
+      - 502
+      - 503
+      - 500
+      # 重试间隔时间，单位是毫秒
+      waitDuration: 3000
+    onSameOneOperation: |
+      maxAttempts: 1
+      retryOnSame: 1
+      retryOnResponseStatus:
+      - 502
+      - 503
+      waitDuration: 1
+    onSameTwoOperation: |
+      maxAttempts: 2
+      retryOnResponseStatus:
+      - 502
+      - 503
+      waitDuration: 1
