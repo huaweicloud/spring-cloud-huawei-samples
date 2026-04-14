@@ -1,0 +1,17 @@
+# 路由规则配置
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: normal-consumer
+          uri: lb://normal-consumer
+          predicates:
+            - Path=/normal-consumer/**
+          filters:
+            - StripPrefix=1
+        - id: bulkhead-consumer
+          uri: lb://bulkhead-consumer
+          predicates:
+            - Path=/bulkhead-consumer/**
+          filters:
+            - StripPrefix=1
