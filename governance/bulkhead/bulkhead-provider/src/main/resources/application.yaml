@@ -1,0 +1,25 @@
+servicecomb:
+  matchGroup:
+    bulkRateLimitingOperation: |
+      matches:
+        - apiPath:
+            prefix: "/bulk-rate-limiting"
+    bulkNoRateLimitingOperation: |
+      matches:
+        - apiPath:
+            prefix: "/bulk-no-rate-limiting"
+    bulkServiceNameOperation: |
+      matches:
+        - apiPath:
+            prefix: "/bulk-service-name"
+          serviceName: bulkhead-consumer
+  bulkhead:
+    bulkRateLimitingOperation: |
+      maxConcurrentCalls: 2
+    ## 隔离仓限制正在处理的请求数为2个，新来的请求等待1000毫秒没有获取到
+    ## 许可，将被拒绝。
+    bulkNoRateLimitingOperation: |
+      maxConcurrentCalls: 2
+      maxWaitDuration: 2000
+    bulkServiceNameOperation: |
+      maxConcurrentCalls: 2
