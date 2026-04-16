@@ -1,0 +1,49 @@
+servicecomb:
+  matchGroup:
+    faultExceptionOperation: |
+      matches:
+        - apiPath:
+            exact: "/fault-exception"
+    faultNullOperation: |
+      matches:
+        - apiPath:
+            exact: "/fault-null"
+    faultPercentOperation: |
+      matches:
+        - apiPath:
+            exact: "/fault-percent"
+    faultServiceNameOperation: |
+      matches:
+        - apiPath:
+            exact: "/fault-service-name"
+          serviceName: fault-provider
+    faultForceOperation: |
+      matches:
+        - apiPath:
+            exact: "/fault-force"
+  faultInjection:
+    faultExceptionOperation: |
+      type: abort
+      percentage: 100
+      fallbackType: ThrowException
+      forceClosed: false
+    faultNullOperation: |
+      type: abort
+      percentage: 100
+      fallbackType: ReturnNull
+      forceClosed: false
+    faultPercentOperation: |
+      type: abort
+      percentage: 50
+      fallbackType: ThrowException
+      forceClosed: false
+    faultServiceNameOperation: |
+      type: abort
+      percentage: 100
+      fallbackType: ThrowException
+      forceClosed: false
+    faultForceOperation: |
+      type: abort
+      percentage: 100
+      fallbackType: ThrowException
+      forceClosed: true
