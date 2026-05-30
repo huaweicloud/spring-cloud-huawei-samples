@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    servicecomb:
+      discovery:
+        enabledZoneAware: true
+        denyCrossZoneLoadBalancing: true
