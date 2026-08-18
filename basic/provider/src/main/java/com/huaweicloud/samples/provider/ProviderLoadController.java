@@ -29,8 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/provider/benchmark")
-public class LoadController {
-  private static final Logger LOGGER = LoggerFactory.getLogger(LoadController.class);
+public class ProviderLoadController {
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProviderLoadController.class);
 
   public static String RSA_ALGORITHM = "RSA";
 
