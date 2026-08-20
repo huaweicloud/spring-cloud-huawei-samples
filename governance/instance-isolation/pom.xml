@@ -9,9 +9,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
-    <spring-cloud.version>2024.0.3</spring-cloud.version>
-    <spring-boot.version>3.4.13</spring-boot.version>
-    <spring-cloud-huawei.version>1.11.15-2024.0.x</spring-cloud-huawei.version>
+    <spring-cloud.version>2025.1.1</spring-cloud.version>
+    <spring-boot.version>4.0.5</spring-boot.version>
+    <spring-cloud-huawei.version>1.11.15-2025.1.x</spring-cloud-huawei.version>
   </properties>
 
   <modules>

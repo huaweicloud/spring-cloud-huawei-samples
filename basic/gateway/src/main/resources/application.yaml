@@ -1,28 +1,32 @@
 # 路由规则配置
 spring:
+  main:
+    web-application-type: reactive
   cloud:
     gateway:
-      routes:
-        - id: consumer
-          uri: lb://basic-consumer
-          predicates:
-            - Path=/consumer/**,/benchmark/**
-          filters:
-            - StripPrefix=1
-        - id: provider
-          uri: lb://basic-provider
-          predicates:
-            - Path=/provider/**
-          filters:
-            - StripPrefix=1
+      server:
+        webflux:
+          routes:
+            - id: consumer
+              uri: lb://basic-consumer
+              predicates:
+                - Path=/consumer/**,/benchmark/**
+              filters:
+                - StripPrefix=1
+            - id: provider
+              uri: lb://basic-provider
+              predicates:
+                - Path=/provider/**
+              filters:
+                - StripPrefix=1
 
-      httpclient:
-        pool:
-          maxConnections: 50
-          maxIdleTime: PT300S
-          maxLifeTime: PT600S
-          evictionInterval: PT600S
-          type: FIXED
+          httpclient:
+            pool:
+              maxConnections: 50
+              maxIdleTime: PT300S
+              maxLifeTime: PT600S
+              evictionInterval: PT600S
+              type: FIXED
 
 
 ## 服务治理配置
